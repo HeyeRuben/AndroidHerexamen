@@ -18,14 +18,7 @@
         android:id="@+id/main"
         android:name="com.example.androidherexamen.main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_main_to_profile"
-            app:destination="@id/profile" />
-        <action
-            android:id="@+id/action_main_to_dashboard"
-            app:destination="@id/dashboard" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/profile"
         android:name="com.example.androidherexamen.profile"
