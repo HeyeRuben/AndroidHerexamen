@@ -20,6 +20,7 @@ import com.example.androidherexamen.databinding.FragmentMainBinding
 class main : Fragment() {
 
     private lateinit var viewModel : MainViewModel
+    private lateinit var viewModelFactory: MainViewModelFactory
 
     private lateinit var binding : FragmentMainBinding
 
@@ -32,7 +33,8 @@ class main : Fragment() {
         //Inflate view + instance van binding klasse
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModelFactory = MainViewModelFactory(1)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         // Voor architectuur te testen
         binding.testButton.setOnClickListener{
