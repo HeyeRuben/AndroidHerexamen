@@ -1,18 +1,24 @@
 package com.example.androidherexamen
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel(){
 
     // Bevat de lijst met posts (voorbeeld lijst van tekst)
-    val listString = mutableListOf("test1", "test2", "test3")
-    var list : MutableLiveData<MutableList<String>> = MutableLiveData(listString)
 
-    init {
-        list.value?.plus("test1");
-        list.value?.plus("test2");
-        list.value?.plus("test3");
+    //Private attribute (Mutable Live Data)
+    private val _list : MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf("test1", "test2", "test3"))
+
+    //public attribute (Live Data
+    val list : LiveData<MutableList<String>>
+        get() = _list
+
+    fun updateList(){
+        _list.value!!.add("new item")
+        var list : MutableLiveData<MutableList<String>> = _list
+
+        _list.value = list.value
     }
-
 }

@@ -41,7 +41,7 @@ class main : Fragment() {
 
         // Observer relationship opzetten (Observer is code die getriggered wordt als de data veranderd)
 
-        viewModel.list.observe(this, Observer {
+        viewModel.list.observe(this, Observer { newList ->
 
             // Lijst in fragment_main.xml updaten via binding. in dit geval update men tekst naar het laatst toegevoegde string (string4)
             println("In Observer")
@@ -53,13 +53,6 @@ class main : Fragment() {
 
     // Voor architectuur te testen
     fun updateList(){
-        viewModel.list.value!!.add("new item")
-        var list : MutableLiveData<MutableList<String>> = viewModel.list
-
-        viewModel.list.value = list.value
-
-        // triggered observer niet want lijst veranderd zogezegd niet
-
-        println(viewModel.list.value)
+        viewModel.updateList()
     }
 }
