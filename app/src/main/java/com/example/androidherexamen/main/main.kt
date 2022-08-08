@@ -36,10 +36,7 @@ class main : Fragment() {
         viewModelFactory = MainViewModelFactory(1)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
-        // Voor architectuur te testen
-        binding.testButton.setOnClickListener{
-            updateList()
-        }
+        binding.mainViewModel = viewModel
 
         // Observer relationship opzetten (Observer is code die getriggered wordt als de data veranderd)
 
