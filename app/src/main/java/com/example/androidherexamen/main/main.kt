@@ -37,15 +37,7 @@ class main : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.mainViewModel = viewModel
-
-        // Observer relationship opzetten (Observer is code die getriggered wordt als de data veranderd)
-
-        viewModel.list.observe(this, Observer { newList ->
-
-            // Lijst in fragment_main.xml updaten via binding. in dit geval update men tekst naar het laatst toegevoegde string (string4)
-            println("In Observer")
-
-        })
+        binding.setLifecycleOwner(this)
 
         return binding.root
     }
