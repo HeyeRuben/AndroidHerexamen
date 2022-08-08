@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel(){
 
     // Bevat de lijst met posts (voorbeeld lijst van tekst)
-
-    private lateinit var list: MutableLiveData<MutableList<String>>
+    val listString = mutableListOf("test1", "test2", "test3")
+    var list : MutableLiveData<MutableList<String>> = MutableLiveData(listString)
 
     init {
-        list.value?.add("test1");
-        list.value?.add("test2");
-        list.value?.add("test3");
+        list.value?.plus("test1");
+        list.value?.plus("test2");
+        list.value?.plus("test3");
     }
 
 }
