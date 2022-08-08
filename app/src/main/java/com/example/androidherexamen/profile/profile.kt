@@ -1,4 +1,4 @@
-package com.example.androidherexamen
+package com.example.androidherexamen.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import com.example.androidherexamen.databinding.FragmentMainBinding
+import com.example.androidherexamen.R
 import com.example.androidherexamen.databinding.FragmentProfileBinding
 
 class profile : Fragment() {

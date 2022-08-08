@@ -6,22 +6,22 @@
     app:startDestination="@id/main">
     <fragment
         android:id="@+id/dashboard"
-        android:name="com.example.androidherexamen.dashboard"
+        android:name="com.example.androidherexamen.dashboard.dashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/login"
-        android:name="com.example.androidherexamen.login"
+        android:name="com.example.androidherexamen.login.login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/main"
-        android:name="com.example.androidherexamen.main"
+        android:name="com.example.androidherexamen.main.main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_Main" />
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.androidherexamen.profile"
+        android:name="com.example.androidherexamen.profile.profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

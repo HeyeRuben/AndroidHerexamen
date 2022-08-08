@@ -1,4 +1,4 @@
-package com.example.androidherexamen
+package com.example.androidherexamen.profile
 
 import androidx.lifecycle.ViewModel
 

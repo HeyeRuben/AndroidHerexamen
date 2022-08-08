@@ -1,4 +1,4 @@
-package com.example.androidherexamen
+package com.example.androidherexamen.dashboard
 
 import androidx.lifecycle.ViewModel
 

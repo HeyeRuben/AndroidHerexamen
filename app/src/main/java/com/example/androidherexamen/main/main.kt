@@ -1,4 +1,4 @@
-package com.example.androidherexamen
+package com.example.androidherexamen.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.androidherexamen.R
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
 /**
