@@ -2,6 +2,7 @@ package com.example.androidherexamen.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity
 data class Comment (
@@ -17,6 +18,8 @@ data class Comment (
 
     var isSubComment: Boolean = false,
 
-    var subCommentId: Long = 0L
+    var subCommentId: Long = 0L,
+
+    var date: Date
 
 )
