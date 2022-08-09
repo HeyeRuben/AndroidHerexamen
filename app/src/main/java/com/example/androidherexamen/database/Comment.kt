@@ -1,6 +1,12 @@
 package com.example.androidherexamen.database
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Comment (
+
+    @PrimaryKey(autoGenerate = true)
     var commentId: Long = 0L,
 
     var userId: Long = 0L,
