@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.androidherexamen.R
 import com.example.androidherexamen.databinding.FragmentProfileBinding
 
-class profile : Fragment() {
+class ProfileFragment : Fragment() {
 
     private lateinit var viewModel : ProfileViewModel
 

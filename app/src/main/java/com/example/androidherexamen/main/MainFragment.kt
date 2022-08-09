@@ -7,17 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.androidherexamen.R
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [main.newInstance] factory method to
+ * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class main : Fragment() {
+class MainFragment : Fragment() {
 
     private lateinit var viewModel : MainViewModel
     private lateinit var viewModelFactory: MainViewModelFactory

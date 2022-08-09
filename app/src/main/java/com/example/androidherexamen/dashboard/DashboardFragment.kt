@@ -11,7 +11,7 @@ import com.example.androidherexamen.R
 import com.example.androidherexamen.databinding.FragmentDashboardBinding
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
-class dashboard : Fragment() {
+class DashboardFragment : Fragment() {
 
     private lateinit var viewModel : DashboardViewModel
 
