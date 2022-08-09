@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.androidherexamen.R
+import com.example.androidherexamen.database.Database
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
 /**
@@ -32,7 +33,11 @@ class MainFragment : Fragment() {
         //Inflate view + instance van binding klasse
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        viewModelFactory = MainViewModelFactory(1)
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = Database.getInstance(application).postDatabaseDAO
+
+        viewModelFactory = MainViewModelFactory(1, dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.mainViewModel = viewModel

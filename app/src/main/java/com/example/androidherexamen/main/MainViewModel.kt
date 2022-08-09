@@ -1,10 +1,13 @@
 package com.example.androidherexamen.main
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.androidherexamen.database.PostDatabaseDAO
 
-class MainViewModel(userId: Int) : ViewModel(){
+class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
 
     // Bevat de lijst met posts (voorbeeld lijst van tekst)
 
