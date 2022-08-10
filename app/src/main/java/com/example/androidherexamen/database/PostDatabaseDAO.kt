@@ -1,21 +1,26 @@
 package com.example.androidherexamen.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface PostDatabaseDAO {
 
     @Insert
-    fun insert (post: Post)
+    suspend fun insert (post: Post)
 
     @Update
-    fun update (post: Post)
+    suspend fun update (post: Post)
 
+    /*
     @Delete
     fun delete (post: Post)
+    */
 
-    @Query("SELECT * FROM Post WHERE userId = :userId ORDER BY date ASC")
-    fun getAllByUserId(userId: Long) : LiveData<List<Post>>
+    @Query("SELECT * FROM Post_table")
+    fun getAll() : LiveData<List<Post>>
 
 }

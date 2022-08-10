@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.androidherexamen.R
-import com.example.androidherexamen.database.Database
+import com.example.androidherexamen.database.AppDatabase
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
 /**
@@ -35,7 +35,7 @@ class MainFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = Database.getInstance(application).postDatabaseDAO
+        val dataSource = AppDatabase.getInstance(application).postDatabaseDAO
 
         viewModelFactory = MainViewModelFactory(1, dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
@@ -44,10 +44,5 @@ class MainFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         return binding.root
-    }
-
-    // Voor architectuur te testen
-    fun updateList(){
-        viewModel.updateList()
     }
 }

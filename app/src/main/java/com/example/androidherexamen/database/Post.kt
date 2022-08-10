@@ -1,25 +1,28 @@
 package com.example.androidherexamen.database
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDateTime
 import java.util.*
 
-@Entity
-data class Post (
+@Entity(tableName = "Post_table")
+data class Post(
 
     @PrimaryKey(autoGenerate = true)
     var postId: Long = 0L,
 
-    var userId: Long = 0L,
+    var userId: Long = 1L,
 
-    var text: String = "",
+    var text: String = "test",
 
-    var photo: String = "",
+    var photo: String = "www.test.be",
 
-    var links: List<String>,
+   // var links: List<String> = listOf(),
 
-    var comments: List<Comment>,
+   // var comments: List<Comment> = listOf(),
 
-    var date: Date
+    // var date: LocalDateTime = LocalDateTime.now()
 
 )

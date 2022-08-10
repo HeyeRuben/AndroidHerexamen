@@ -15,7 +15,7 @@ interface CommentDatabaseDAO {
     @Delete
     fun delete (comment: Comment)
 
-    @Query("SELECT * FROM Comment WHERE postId = :postId ORDER BY date ASC")
+    @Query("SELECT * FROM Comment_table WHERE postId = :postId")
     fun getAllByPostId(postId: Long) : LiveData<List<Comment>>
 
 }

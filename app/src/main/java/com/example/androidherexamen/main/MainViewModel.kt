@@ -1,15 +1,36 @@
 package com.example.androidherexamen.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+
+import androidx.lifecycle.*
+import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
+import kotlinx.coroutines.*
 
 class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
 
-    // Bevat de lijst met posts (voorbeeld lijst van tekst)
+    private val posts = database.getAll() // later aanpassen met userId parameter
+
+    val stringPosts = posts.value.toString() // Kan ook via formatter
+
+    fun onAddPost(){
+
+        viewModelScope.launch {
+            val newPost = Post()
+
+            insert(newPost)
+        }
+
+    }
+
+    private suspend fun insert(newPost: Post) {
+
+        database.insert(newPost)
+        println(stringPosts)
+
+    }
+
+    /*
 
     //Private attribute (Mutable Live Data)
     private val _list : MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf("test1", "test2", "test3"))
@@ -24,4 +45,6 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
 
         _list.value = list.value
     }
+
+     */
 }
