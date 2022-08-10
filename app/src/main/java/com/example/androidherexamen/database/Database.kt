@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Post::class, Comment::class, User::class], version = 1,  exportSchema = false)
-abstract class MyDatabase : RoomDatabase() {
+abstract class Database : RoomDatabase() {
 
     abstract val postDatabaseDAO: PostDatabaseDAO
     abstract val commentDatabaseDAO: CommentDatabaseDAO
@@ -15,16 +15,16 @@ abstract class MyDatabase : RoomDatabase() {
     companion object {
 
         @Volatile
-        private var INSTANCE: MyDatabase? = null
+        private var INSTANCE: com.example.androidherexamen.database.Database? = null
 
-        fun getInstance(context: Context): MyDatabase {
+        fun getInstance(context: Context): com.example.androidherexamen.database.Database {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        MyDatabase::class.java,
+                        Database::class.java,
                         "my_database"
                     )
                         .fallbackToDestructiveMigration()
