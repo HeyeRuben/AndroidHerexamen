@@ -20,6 +20,6 @@ data class Comment (
 
     var subCommentId: Long = 0L,
 
-    var date: Date
+    //var date: Date
 
 )

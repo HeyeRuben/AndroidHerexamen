@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.androidherexamen.R
+import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
 /**
@@ -18,31 +21,26 @@ import com.example.androidherexamen.databinding.FragmentMainBinding
  */
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel : MainViewModel
-    private lateinit var viewModelFactory: MainViewModelFactory
-
-    private lateinit var binding : FragmentMainBinding
-
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        //Inflate view + instance van binding klasse
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        viewModelFactory = MainViewModelFactory(1)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        val application = requireNotNull(this.activity).application
 
-        binding.mainViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
+
+        val viewModelFactory = MainViewModelFactory(1, dataSource, application)
+
+        val mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
+        binding.mainViewModel = mainViewModel
+
+        binding.lifecycleOwner = this
 
         return binding.root
-    }
-
-    // Voor architectuur te testen
-    fun updateList(){
-        viewModel.updateList()
     }
 }

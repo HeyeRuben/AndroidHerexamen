@@ -16,10 +16,10 @@ data class Post (
 
     var photo: String = "",
 
-    var links: List<String>,
+    //var links: List<String>,
 
-    var comments: List<Comment>,
+    //var comments: List<Comment>,
 
-    var date: Date
+    //var date: Date
 
 )
