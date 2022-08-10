@@ -15,25 +15,31 @@
         android:layout_height="match_parent">
         tools:context=".main.MainFragment"
 
-        <TextView
-            android:id="@+id/test1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@{mainViewModel.posts.toString()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/testButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/testButton"
-            android:layout_width="0dp"
-            android:layout_height="154dp"
+            android:layout_width="168dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> mainViewModel.updateList()}"
             android:text="CLICK ME"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/test1"
-            app:layout_constraintTop_toTopOf="@+id/test1"
-            android:onClick="@{() -> mainViewModel.updateList()}"/>
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="380dp"
+            android:layout_height="620dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/testButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.372"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
