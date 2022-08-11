@@ -14,7 +14,7 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
     fun updateList(){
         viewModelScope.launch{
             val newPost = Post()
-            //newPost.text = kotlin.random.Random.nextInt().toString()
+            newPost.text = "Random tekstje (als nummer lol): " + kotlin.random.Random.nextInt().toString()
             insert(newPost)
         }
     }
