@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
@@ -36,6 +37,15 @@ class MainFragment : Fragment() {
         val mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.mainViewModel = mainViewModel
+
+        val adapter = PostAdapter()
+        binding.postsList.adapter = adapter
+
+        mainViewModel.posts.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         binding.lifecycleOwner = this
 
