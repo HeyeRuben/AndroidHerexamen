@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.databinding.PostViewBinding
 
-class PostAdapter(val clickListener: PostCommentsListener) : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()){
+class PostAdapter(val clickListener: PostCommentsListener) : ListAdapter<Post, PostAdapter.ViewHolder>(
+    PostDiffCallback()
+){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
