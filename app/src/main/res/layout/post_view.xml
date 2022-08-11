@@ -7,6 +7,9 @@
         <variable
             name="post"
             type="com.example.androidherexamen.database.Post" />
+        <variable
+            name="commentsClickListener"
+            type="com.example.androidherexamen.main.PostCommentsListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +70,8 @@
                         android:layout_width="296dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Comments" />
+                        android:text="Comments"
+                        android:onClick="@{() -> commentsClickListener.onClick(post)}"/>
 
                     <Space
                         android:layout_width="wrap_content"
