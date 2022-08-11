@@ -5,25 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.Post
 
-class PostAdapter : RecyclerView.Adapter<PostAdapter.ViewHolder>(){
-
-    var data = listOf<Post>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
+class PostAdapter : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Alle velden die zichtbaar zijn worden hergebruikt dus in deze methode
         // Moet alles ingesteld worden
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -55,6 +49,18 @@ class PostAdapter : RecyclerView.Adapter<PostAdapter.ViewHolder>(){
                 return ViewHolder(view)
             }
         }
-
     }
+}
+
+class PostDiffCallback : DiffUtil.ItemCallback<Post>(){
+
+    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+        return oldItem.postId == newItem.postId
+    }
+
+    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+        return oldItem == newItem
+    }
+
+
 }
