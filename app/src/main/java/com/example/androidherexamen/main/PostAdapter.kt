@@ -2,18 +2,16 @@ package com.example.androidherexamen.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.databinding.PostViewBinding
 
-class PostAdapter : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()){
+class PostAdapter(val clickListener: PostCommentsListener) : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
 
@@ -24,9 +22,10 @@ class PostAdapter : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()
 
     class ViewHolder private constructor(val binding: PostViewBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Post) {
+        fun bind(item: Post, clickListener: PostCommentsListener) {
 
             binding.post = item
+            binding.commentsClickListener = clickListener
             binding.executePendingBindings()
 
         }
@@ -51,5 +50,8 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>(){
         return oldItem == newItem
     }
 
+}
 
+class PostCommentsListener(val clickListener: (postId: Long) -> Unit){
+    fun onClick(post: Post) = clickListener(post.postId)
 }
