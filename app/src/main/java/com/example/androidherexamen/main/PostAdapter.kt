@@ -26,11 +26,9 @@ class PostAdapter : ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()
 
         fun bind(item: Post) {
 
-            // Hier alle gegevens uit item halen bv item. momenteel nog hardcoded voor testing
-            binding.postDate.text = "11/08/2022"
-            binding.postText.text = item.text
-            //binding.postImage //nog op te zoeken
-            binding.postLinks.text = "Hier kunnen links verschijnen"
+            binding.post = item
+            binding.executePendingBindings()
+
         }
 
         companion object {

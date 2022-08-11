@@ -2,10 +2,10 @@ package com.example.androidherexamen.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import com.example.androidherexamen.R.drawable.image_holder
 
 @Entity
-data class Post (
+data class Post(
 
     @PrimaryKey(autoGenerate = true)
     var postId: Long = 0L,
@@ -14,7 +14,7 @@ data class Post (
 
     var text: String = "",
 
-    var photo: String = "",
+    var photo: Int = image_holder
 
     //var links: List<String>,
 

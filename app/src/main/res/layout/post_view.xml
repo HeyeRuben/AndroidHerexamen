@@ -42,13 +42,13 @@
                     android:id="@+id/post_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum diam mi, quis convallis leo placerat nec. Quisque ut nisl sodales, semper mi vel, efficitur augue. Nunc dignissim turpis ante, non tempor metus efficitur quis. Suspendisse potenti. Curabitur luctus libero vel tellus porta, eu auctor urna feugiat. Donec quis lectus sapien. Proin a ante at purus viverra fringilla. Ut sit amet euismod ante, non porttitor purus.  " />
+                    app:postText="@{post}" />
 
                 <ImageView
                     android:id="@+id/post_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:srcCompat="@mipmap/ic_launcher" />
+                    app:postImage="@{post}" />
 
                 <TextView
                     android:id="@+id/post_links"
