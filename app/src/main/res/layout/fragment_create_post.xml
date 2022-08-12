@@ -38,7 +38,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Post Text" />
+            android:text="@={viewModel.newPostText}" />
 
         <Space
             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.submitClicked()}"
+            android:onClick="@{() -> viewModel.onSavePostClicked()}"
             android:text="Submit" />
 
     </LinearLayout>

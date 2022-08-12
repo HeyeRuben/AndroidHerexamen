@@ -10,30 +10,16 @@ import kotlinx.coroutines.launch
 
 class CreatePostViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
 
-    private val _saveEvent = MutableLiveData<Boolean>()
-    val saveEvent: LiveData<Boolean>
-        get() = _saveEvent
-
-    init {
-        _saveEvent.value = false
-    }
-
-    fun saveEventDone(){
-        _saveEvent.value = false
-    }
+    val newPostText = MutableLiveData("Enter text")
 
     private suspend fun insert(newPost: Post) {
         database.insert(newPost)
     }
 
-    fun submitClicked(){
-        _saveEvent.value = true
-    }
-
-    fun onSavePostClicked(text: String){
+    fun onSavePostClicked(){
         viewModelScope.launch {
             val newPost = Post()
-            newPost.text = text
+            newPost.text = newPostText.value!!.toString()
             insert(newPost)
         }
     }

@@ -38,15 +38,6 @@ class CreatePostFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        createPostViewModel.saveEvent.observe(viewLifecycleOwner, { saveEvent ->
-            if (saveEvent) {
-                createPostViewModel.onSavePostClicked(
-                    binding.newPostText.text.toString()
-                )
-                createPostViewModel.saveEventDone()
-            }
-        })
-
         return binding.root
     }
 }
