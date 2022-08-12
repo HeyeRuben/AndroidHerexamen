@@ -8,7 +8,7 @@ import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class CommentsViewModel(postId: Long, val database: CommentDatabaseDAO, application: Application) : AndroidViewModel(application){
+class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, application: Application) : AndroidViewModel(application){
 
     // Bevat de lijst met posts
     val comments = database.getAllByPostId(postId) // Impl: via string formatter de data weergeven
@@ -16,6 +16,7 @@ class CommentsViewModel(postId: Long, val database: CommentDatabaseDAO, applicat
     fun updateList(){
         viewModelScope.launch{
             val newComment = Comment()
+            newComment.postId = postId
             newComment.text = "Random comment (als nummer lol): " + kotlin.random.Random.nextInt().toString()
             insert(newComment)
         }
