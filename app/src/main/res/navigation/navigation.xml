@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_main_to_commentsFragment"
             app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_main_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -36,4 +39,8 @@
             android:name="postId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="com.example.androidherexamen.createPost.CreatePostFragment"
+        android:label="CreatePostFragment" />
 </navigation>

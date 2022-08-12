@@ -2,6 +2,9 @@ package com.example.androidherexamen.main
 
 import android.app.Application
 import androidx.lifecycle.*
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.androidherexamen.R
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch

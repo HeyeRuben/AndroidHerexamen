@@ -54,6 +54,10 @@ class MainFragment : Fragment() {
             }
         })
 
+        binding.testButton.setOnClickListener{
+            this.findNavController().navigate(MainFragmentDirections.actionMainToCreatePostFragment())
+        }
+
         mainViewModel.posts.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
