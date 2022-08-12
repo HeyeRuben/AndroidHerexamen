@@ -33,7 +33,7 @@ class CommentsFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).commentDatabaseDAO
 
-        val viewModelFactory = CommentsViewModelFactory(1, dataSource, application)
+        val viewModelFactory = CommentsViewModelFactory(CommentsFragmentArgs.fromBundle(requireArguments()).postId, dataSource, application)
 
         val commentsViewModel = ViewModelProvider(this, viewModelFactory).get(CommentsViewModel::class.java)
 
