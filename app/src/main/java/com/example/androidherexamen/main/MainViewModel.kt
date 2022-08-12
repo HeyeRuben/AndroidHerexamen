@@ -24,6 +24,7 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
     }
 
     private suspend fun delete(post: Post){
+        if(post != null)
         database.delete(post)
     }
 
