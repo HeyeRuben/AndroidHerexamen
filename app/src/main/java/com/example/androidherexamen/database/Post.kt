@@ -14,9 +14,9 @@ data class Post(
 
     var text: String = "",
 
-    var photo: Int = image_holder
+    var photo: Int = image_holder,
 
-    //var links: List<String>,
+    //var links: MutableList<String>
 
     //var comments: List<Comment>,
 

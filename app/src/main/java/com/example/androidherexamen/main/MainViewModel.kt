@@ -23,12 +23,23 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
         database.insert(newPost)
     }
 
+    private suspend fun delete(post: Post){
+        database.delete(post)
+    }
+
     private val _navigateToComments = MutableLiveData<Long?>()
     val navigateToComments
         get() = _navigateToComments
 
     fun onCommentsClicked(postId: Long){
         _navigateToComments.value = postId
+    }
+
+    fun onDeletePostClicked(postId: Long){
+        viewModelScope.launch {
+            val post = database.get(postId)
+            delete(post)
+        }
     }
 
     fun onCommentsNavigated() {

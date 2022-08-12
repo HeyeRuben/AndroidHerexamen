@@ -41,6 +41,8 @@ class MainFragment : Fragment() {
 
         val adapter = PostAdapter(PostCommentsListener {
             postId -> mainViewModel.onCommentsClicked(postId)
+        }, DeletePostListener {
+            postId -> mainViewModel.onDeletePostClicked(postId)
         })
         binding.postsList.adapter = adapter
 

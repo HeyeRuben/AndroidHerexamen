@@ -22,7 +22,17 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
         }
     }
 
+    fun deleteComment(comment: Comment){
+        viewModelScope.launch {
+            delete(comment)
+        }
+    }
+
     private suspend fun insert(newComment: Comment) {
         database.insert(newComment)
+    }
+
+    private suspend fun delete(comment: Comment) {
+        database.delete(comment)
     }
 }
