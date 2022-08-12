@@ -97,7 +97,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="55dp" />
+            android:layout_height="16dp" />
 
         <Button
             android:id="@+id/button5"
