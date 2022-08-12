@@ -9,13 +9,14 @@ import com.example.androidherexamen.database.Comment
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.databinding.CommentsViewBinding
 import com.example.androidherexamen.databinding.PostViewBinding
+import com.example.androidherexamen.main.DeletePostListener
 
-class CommentsAdapter() : ListAdapter<Comment, CommentsAdapter.ViewHolder>(
+class CommentsAdapter(val deleteCommentListener: DeleteCommentListener) : ListAdapter<Comment, CommentsAdapter.ViewHolder>(
     CommentDiffCallback()
 ){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), deleteCommentListener)
     }
 
 
@@ -26,9 +27,10 @@ class CommentsAdapter() : ListAdapter<Comment, CommentsAdapter.ViewHolder>(
 
     class ViewHolder private constructor(val binding: CommentsViewBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Comment) {
+        fun bind(item: Comment, deleteCommentListener: DeleteCommentListener) {
 
             binding.comment = item
+            binding.deleteCommentClickListener = deleteCommentListener
             binding.executePendingBindings()
 
         }
@@ -53,4 +55,8 @@ class CommentDiffCallback : DiffUtil.ItemCallback<Comment>(){
         return oldItem == newItem
     }
 
+}
+
+class DeleteCommentListener(val clickListener: (commentId: Long) -> Unit){
+    fun onClick(comment: Comment) = clickListener(comment.commentId)
 }

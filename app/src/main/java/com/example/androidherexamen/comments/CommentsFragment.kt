@@ -13,6 +13,7 @@ import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentCommentsBinding
 import com.example.androidherexamen.databinding.FragmentMainBinding
+import com.example.androidherexamen.main.DeletePostListener
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +41,9 @@ class CommentsFragment : Fragment() {
         binding.commentsViewModel = commentsViewModel
 
 
-        val adapter = CommentsAdapter()
+        val adapter = CommentsAdapter(DeleteCommentListener {
+                commentId -> commentsViewModel.onDeleteCommentClicked(commentId)
+        })
         binding.commentsList.adapter = adapter
 
 

@@ -18,4 +18,7 @@ interface CommentDatabaseDAO {
     @Query("SELECT * FROM Comment WHERE postId = :postId")
     fun getAllByPostId(postId: Long) : LiveData<List<Comment>>
 
+    @Query("SELECT * FROM Comment WHERE commentId = :id")
+    suspend fun get(id: Long) : Comment
+
 }
