@@ -22,4 +22,16 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
     private suspend fun insert(newPost: Post) {
         database.insert(newPost)
     }
+
+    private val _navigateToComments = MutableLiveData<Long?>()
+    val navigateToComments
+        get() = _navigateToComments
+
+    fun onCommentsClicked(postId: Long){
+        _navigateToComments.value = postId
+    }
+
+    fun onCommentsNavigated() {
+        _navigateToComments.value = null
+    }
 }

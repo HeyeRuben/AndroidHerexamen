@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentMainBinding
@@ -39,9 +40,17 @@ class MainFragment : Fragment() {
         binding.mainViewModel = mainViewModel
 
         val adapter = PostAdapter(PostCommentsListener {
-            postId -> println(postId.toString())
+            postId -> mainViewModel.onCommentsClicked(postId)
         })
         binding.postsList.adapter = adapter
+
+        mainViewModel.navigateToComments.observe(this, Observer {post ->
+            post?.let {
+                this.findNavController().navigate(MainFragmentDirections
+                    .actionMainToCommentsFragment(post))
+                mainViewModel.onCommentsNavigated()
+            }
+        })
 
         mainViewModel.posts.observe(viewLifecycleOwner, Observer {
             it?.let {

@@ -18,10 +18,22 @@
         android:id="@+id/main"
         android:name="com.example.androidherexamen.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.example.androidherexamen.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.androidherexamen.comments.CommentsFragment"
+        android:label="CommentsFragment" >
+        <argument
+            android:name="postId"
+            app:argType="long" />
+    </fragment>
 </navigation>

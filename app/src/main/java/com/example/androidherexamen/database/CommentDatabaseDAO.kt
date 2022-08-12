@@ -7,13 +7,13 @@ import androidx.room.*
 interface CommentDatabaseDAO {
 
     @Insert
-    fun insert (comment: Comment)
+    suspend fun insert (comment: Comment)
 
     @Update
-    fun update (comment: Comment)
+    suspend fun update (comment: Comment)
 
     @Delete
-    fun delete (comment: Comment)
+    suspend fun delete (comment: Comment)
 
     @Query("SELECT * FROM Comment WHERE postId = :postId")
     fun getAllByPostId(postId: Long) : LiveData<List<Comment>>
