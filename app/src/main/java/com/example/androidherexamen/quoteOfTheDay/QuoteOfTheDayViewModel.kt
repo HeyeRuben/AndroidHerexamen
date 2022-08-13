@@ -13,11 +13,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class QuoteOfTheDayViewModel : ViewModel(){
-    // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    // The internal MutableLiveData Property that stores the most recent response
+    private val _response = MutableLiveData<QuoteOfTheDayProperty>()
 
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
+    // The external immutable LiveData for the response Property
+    val response: LiveData<QuoteOfTheDayProperty>
         get() = _response
 
     /**
@@ -37,11 +37,11 @@ class QuoteOfTheDayViewModel : ViewModel(){
                 try{
 
                     var listResult = QuoteOfTheDayApi.retrofitService.getProperties()
-                    _response.value = listResult[0].q
+                    _response.value = listResult.first()
 
                 } catch(t:Throwable) {
 
-                    _response.value = "Failure: " + t.message
+                 //   _response.value = "Failure: " + t.message
 
                 }
 
