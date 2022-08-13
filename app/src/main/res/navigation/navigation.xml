@@ -43,4 +43,8 @@
         android:id="@+id/createPostFragment"
         android:name="com.example.androidherexamen.createPost.CreatePostFragment"
         android:label="CreatePostFragment" />
+    <fragment
+        android:id="@+id/quoteOfTheDay"
+        android:name="com.example.androidherexamen.quoteOfTheDay.QuoteOfTheDayFragment"
+        android:label="QuoteOfTheDayFragment" />
 </navigation>
