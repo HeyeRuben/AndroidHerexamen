@@ -14,19 +14,28 @@ import com.example.androidherexamen.databinding.FragmentQuoteOfTheDayBinding
 
 class QuoteOfTheDayFragment : Fragment() {
 
-    private lateinit var viewModel : QuoteOfTheDayViewModel
+    /**
+     * Lazily initialize our [OverviewViewModel].
+     */
+    private val viewModel: QuoteOfTheDayViewModel by lazy {
+        ViewModelProvider(this).get(QuoteOfTheDayViewModel::class.java)
+    }
 
-    private lateinit var binding : FragmentQuoteOfTheDayBinding
+    /**
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
+     */
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding = FragmentQuoteOfTheDayBinding.inflate(inflater)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //Inflate view + instance van binding klasse
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_quote_of_the_day, container, false)
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
 
-        viewModel = ViewModelProvider(this).get(QuoteOfTheDayViewModel::class.java)
+        // Giving the binding access to the OverviewViewModel
+        binding.viewModel = viewModel
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 }
