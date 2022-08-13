@@ -3,8 +3,11 @@ package com.example.androidherexamen.quoteOfTheDay
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.androidherexamen.network.QuoteOfTheDayApi
+import com.example.androidherexamen.network.QuoteOfTheDayApiService
 import com.example.androidherexamen.network.QuoteOfTheDayProperty
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,14 +32,25 @@ class QuoteOfTheDayViewModel : ViewModel(){
      * Mars properties retrieved.
      */
     private fun getQuoteOfTheDayProperties() {
-        QuoteOfTheDayApi.retrofitService.getProperties().enqueue( object: Callback<List<QuoteOfTheDayProperty>> {
-            override fun onFailure(call: Call<List<QuoteOfTheDayProperty>>, t: Throwable) {
-                _response.value = "Failure: " + t.message
-            }
 
-            override fun onResponse(call: Call<List<QuoteOfTheDayProperty>>, response: Response<List<QuoteOfTheDayProperty>>) {
-                _response.value = response.body()?.get(0)?.q
-            }
-        })
+        viewModelScope.launch {
+                try{
+
+                    var listResult = QuoteOfTheDayApi.retrofitService.getProperties()
+                    _response.value = listResult[0].q
+
+                } catch(t:Throwable) {
+
+                    _response.value = "Failure: " + t.message
+
+                }
+
+        }
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 }
