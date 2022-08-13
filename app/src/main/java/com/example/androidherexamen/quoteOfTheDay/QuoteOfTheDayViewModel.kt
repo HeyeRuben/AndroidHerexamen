@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.androidherexamen.network.QuoteOfTheDayApi
+import com.example.androidherexamen.network.QuoteOfTheDayProperty
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,13 +29,13 @@ class QuoteOfTheDayViewModel : ViewModel(){
      * Mars properties retrieved.
      */
     private fun getQuoteOfTheDayProperties() {
-        QuoteOfTheDayApi.retrofitService.getProperties().enqueue( object: Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
+        QuoteOfTheDayApi.retrofitService.getProperties().enqueue( object: Callback<List<QuoteOfTheDayProperty>> {
+            override fun onFailure(call: Call<List<QuoteOfTheDayProperty>>, t: Throwable) {
                 _response.value = "Failure: " + t.message
             }
 
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                _response.value = response.body()
+            override fun onResponse(call: Call<List<QuoteOfTheDayProperty>>, response: Response<List<QuoteOfTheDayProperty>>) {
+                _response.value = response.body()?.get(0)?.q
             }
         })
     }

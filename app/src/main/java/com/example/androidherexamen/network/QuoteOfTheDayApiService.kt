@@ -21,7 +21,7 @@ private val retrofit = Retrofit.Builder()
 interface QuoteOfTheDayApiService{
     @GET("today")
     fun getProperties():
-            Call<String>
+            Call<List<QuoteOfTheDayProperty>>
 }
 
 object QuoteOfTheDayApi {
