@@ -19,4 +19,11 @@ fun ImageView.setPostImage(item: Post?) {
     }
 }
 
+@BindingAdapter("postLinks")
+fun TextView.setPostLinks(item: Post?) {
+    item?.let {
+        text = item.links
+    }
+}
+
 // Nog toe te voegen voor date & links

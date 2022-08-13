@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class CreatePostViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
 
     val newPostText = MutableLiveData("Enter text")
+    val newPostLinks = MutableLiveData("")
 
     private suspend fun insert(newPost: Post) {
         database.insert(newPost)
@@ -20,6 +21,7 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
         viewModelScope.launch {
             val newPost = Post()
             newPost.text = newPostText.value!!.toString()
+            newPost.links = newPostLinks.value!!.toString()
             insert(newPost)
         }
     }
