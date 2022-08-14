@@ -3,6 +3,7 @@ package com.example.androidherexamen.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.androidherexamen.R.drawable.image_holder
+import com.example.androidherexamen.R.drawable.image_placeholder
 
 @Entity
 data class Post(
@@ -14,7 +15,7 @@ data class Post(
 
     var text: String = "",
 
-    var photo: Int = image_holder,
+    var photo: Int = image_placeholder,
 
     var links: String = ""
 
