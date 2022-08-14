@@ -12,17 +12,40 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
 
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
+    val addNewPostResult = MutableLiveData("")
 
     private suspend fun insert(newPost: Post) {
         database.insert(newPost)
     }
 
     fun onSavePostClicked(){
-        viewModelScope.launch {
-            val newPost = Post()
-            newPost.text = newPostText.value!!.toString()
-            newPost.links = newPostLinks.value!!.toString()
-            insert(newPost)
+
+        var isValidated = validateNewPost()
+
+        if(isValidated){
+            viewModelScope.launch {
+                val newPost = Post()
+                newPost.text = newPostText.value!!.toString()
+                newPost.links = newPostLinks.value!!.toString()
+                insert(newPost)
+                addNewPostResult.value = "Succes."
+            }
+        } else {
+            addNewPostResult.value = "Error: je moet een link of post tekst toevoegen."
         }
+
+
+    }
+
+    fun validateNewPost(): Boolean {
+
+        var enteredData = 0
+
+        if(!newPostText.value.isNullOrEmpty())
+            enteredData++
+        if(!newPostLinks.value.isNullOrEmpty())
+            enteredData++
+
+        return enteredData > 0
     }
 }
