@@ -10,16 +10,28 @@ import kotlinx.coroutines.launch
 
 class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, application: Application) : AndroidViewModel(application){
 
+    val newCommentText = MutableLiveData("")
+
     // Bevat de lijst met posts
     val comments = database.getAllByPostId(postId) // Impl: via string formatter de data weergeven
 
-    fun updateList(){
-        viewModelScope.launch{
-            val newComment = Comment()
-            newComment.postId = postId
-            newComment.text = "Random comment (als nummer lol): " + kotlin.random.Random.nextInt().toString()
-            insert(newComment)
+    fun onSaveCommentClicked(){
+
+        var isValidated = validateNewComment()
+
+        if(isValidated){
+            viewModelScope.launch {
+                val newComment = Comment()
+                newComment.postId = postId
+                newComment.text = newCommentText.value.toString()
+                insert(newComment)
+                newCommentText.value = ""
+            }
         }
+    }
+
+    private fun validateNewComment(): Boolean {
+        return !newCommentText.value.isNullOrBlank()
     }
 
     private suspend fun insert(newComment: Comment) {
