@@ -42,7 +42,11 @@
     <fragment
         android:id="@+id/createPostFragment"
         android:name="com.example.androidherexamen.createPost.CreatePostFragment"
-        android:label="CreatePostFragment" />
+        android:label="CreatePostFragment" >
+        <action
+            android:id="@+id/action_createPostFragment_to_main"
+            app:destination="@id/main" />
+    </fragment>
     <fragment
         android:id="@+id/quoteOfTheDay"
         android:name="com.example.androidherexamen.quoteOfTheDay.QuoteOfTheDayFragment"

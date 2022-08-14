@@ -2,8 +2,6 @@ package com.example.androidherexamen.createPost
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.androidherexamen.database.Comment
-import com.example.androidherexamen.database.CommentDatabaseDAO
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
@@ -13,6 +11,14 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
     val addNewPostResult = MutableLiveData("")
+
+    private val _navigateToMain = MutableLiveData(false)
+    val navigateToMain: LiveData<Boolean>
+        get() = _navigateToMain
+
+    fun onMainNavigated() {
+        _navigateToMain.value = false
+    }
 
     private suspend fun insert(newPost: Post) {
         database.insert(newPost)
@@ -29,15 +35,14 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
                 newPost.links = newPostLinks.value!!.toString()
                 insert(newPost)
                 addNewPostResult.value = "Succes."
+                _navigateToMain.value = true
             }
         } else {
             addNewPostResult.value = "Error: je moet een link of post tekst toevoegen."
         }
-
-
     }
 
-    fun validateNewPost(): Boolean {
+    private fun validateNewPost(): Boolean {
 
         var enteredData = 0
 

@@ -14,18 +14,6 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
     // Bevat de lijst met posts
     val posts = database.getAll() // Impl: via string formatter de data weergeven
 
-    fun updateList(){
-        viewModelScope.launch{
-            val newPost = Post()
-            newPost.text = "Random tekstje (als nummer lol): " + kotlin.random.Random.nextInt().toString()
-            insert(newPost)
-        }
-    }
-
-    private suspend fun insert(newPost: Post) {
-        database.insert(newPost)
-    }
-
     private suspend fun delete(post: Post){
         if(post != null)
         database.delete(post)
