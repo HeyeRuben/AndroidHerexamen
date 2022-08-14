@@ -18,7 +18,7 @@ data class Comment (
 
     var isSubComment: Boolean = false,
 
-    var subCommentId: Long = 0L,
+    var subCommentId: Long? = 0L,
 
     //var date: Date
 

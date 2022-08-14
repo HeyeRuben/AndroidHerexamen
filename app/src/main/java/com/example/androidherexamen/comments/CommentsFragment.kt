@@ -43,9 +43,23 @@ class CommentsFragment : Fragment() {
 
         val adapter = CommentsAdapter(DeleteCommentListener {
                 commentId -> commentsViewModel.onDeleteCommentClicked(commentId)
+        },
+        ReplyCommentListener{
+            commentId -> commentsViewModel.onReplyToCommentClicked(commentId)
         })
+
         binding.commentsList.adapter = adapter
 
+
+        commentsViewModel.isSubComment.observe(this, Observer {
+            val bttn = binding.buttonReset
+
+            if(it == true) {
+                bttn.visibility = View.VISIBLE
+            } else {
+                bttn.visibility = View.INVISIBLE
+            }
+        })
 
         commentsViewModel.comments.observe(viewLifecycleOwner, Observer {
             it?.let {

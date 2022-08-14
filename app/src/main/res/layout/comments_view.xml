@@ -9,6 +9,9 @@
         <variable
             name="deleteCommentClickListener"
             type="com.example.androidherexamen.comments.DeleteCommentListener" />
+        <variable
+            name="replyCommentClickListener"
+            type="com.example.androidherexamen.comments.ReplyCommentListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +73,7 @@
                         android:layout_width="296dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="@{}"
+                        android:onClick="@{() -> replyCommentClickListener.onClick(comment)}"
                         android:text="Reply" />
 
                 </LinearLayout>

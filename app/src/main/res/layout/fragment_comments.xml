@@ -29,8 +29,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comments_list"
-            android:layout_width="352dp"
-            android:layout_height="567dp"
+            android:layout_width="350dp"
+            android:layout_height="499dp"
             android:layout_margin="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/testButton2"
@@ -52,6 +52,28 @@
             app:layout_constraintEnd_toStartOf="@+id/testButton2"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{CommentsViewModel.replyCommentNotifier}"
+            app:layout_constraintBottom_toTopOf="@+id/newCommentText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="16dp"
+            android:text="X"
+            android:onClick="@{() -> CommentsViewModel.resetValues()}"
+            app:layout_constraintBottom_toTopOf="@+id/testButton2"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
