@@ -3,28 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/drawable/dashboard.xml" value="0.22135416666666666" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/drawable/home.xml" value="0.22135416666666666" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/drawable/profile.xml" value="0.12129629629629629" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/comments_view.xml" value="0.4" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/dashboard.xml" value="0.4282238442822384" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_add_post.xml" value="0.27943840579710144" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_comments.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_create_post.xml" value="0.1814595660749507" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_login.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_profile.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_quoteOfTheDay.xml" value="0.23385416666666667" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_quote_of_the_day.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/login.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/post_view.xml" value="0.4" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/profile.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/recyclerview_adapter_layout.xml" value="0.35260416666666666" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/text_item_view.xml" value="0.20520833333333333" />
-        <entry key="..\:/AndroidHerexamen/app/src/main/res/menu/bottom_nav.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidHerexamen/app/src/main/res/layout/fragment_create_post.xml" value="0.2957427536231884" />
       </map>
     </option>
   </component>
