@@ -16,8 +16,6 @@ class PostAdapter(val clickListener: PostCommentsListener, val deletePostListene
         holder.bind(getItem(position)!!, clickListener, deletePostListener)
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }

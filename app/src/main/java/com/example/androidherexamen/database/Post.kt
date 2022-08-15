@@ -17,7 +17,9 @@ data class Post(
 
     var photo: Int = image_placeholder,
 
-    var links: String = ""
+    var links: String = "",
+
+    var favorite: Boolean = false
 
     //var comments: List<Comment>,
 
