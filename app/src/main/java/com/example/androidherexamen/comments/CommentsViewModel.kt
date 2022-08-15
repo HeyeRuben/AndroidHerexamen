@@ -47,7 +47,8 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
     }
 
     fun onReplyToCommentClicked(commentId: Long){
-        replyCommentNotifier.value = "Antwoord op: $commentId"
+        val comment = comments.value?.filter { it.commentId == commentId }
+        replyCommentNotifier.value = "Antwoord op user: ${comment?.first()?.userId}"
         isSubComment.value = true
         subCommentId = commentId
     }

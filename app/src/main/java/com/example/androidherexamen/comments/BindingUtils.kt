@@ -18,7 +18,7 @@ fun TextView.setHeaderext(item: Comment?) {
     item?.let {
 
         if(item.isSubComment){
-            "User ${item.userId} > Comment ${item.subCommentId}".also { text = it }
+            "User ${item.userId} > User ${item.userId}".also { text = it }
         } else {
             "User ${item.userId}".also { text = it }
         }
