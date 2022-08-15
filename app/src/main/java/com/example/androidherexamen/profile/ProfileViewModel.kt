@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
 
     // Bevat de lijst met favoriete posts
-    val favPosts = database.getAll() // Impl: via string formatter de data weergeven
+    val favPosts = database.getAllFavPosts() // Impl: via string formatter de data weergeven
 
     private suspend fun delete(post: Post){
         if(post != null)

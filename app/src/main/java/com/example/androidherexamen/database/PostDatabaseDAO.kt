@@ -18,7 +18,7 @@ interface PostDatabaseDAO {
     @Query("SELECT * FROM Post ORDER BY postId DESC")
     fun getAll() : LiveData<List<Post>>
 
-    @Query("SELECT * FROM Post WHERE favorite == 0 ORDER BY postId DESC")
+    @Query("SELECT * FROM Post WHERE favorite == 1 ORDER BY postId DESC")
     fun getAllFavPosts() : LiveData<List<Post>>
 
     @Query("SELECT * FROM Post WHERE postId = :id")
