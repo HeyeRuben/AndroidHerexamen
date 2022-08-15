@@ -81,9 +81,17 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
 
     fun onEditCommentClicked(commentId: Long){
         editCommentId = commentId
+        showEditCommentText(commentId)
         replyCommentNotifier.value = "Bewerk comment: $commentId"
         isEdit = true
         isResetButtonVisible.value = true
+    }
+
+    private fun showEditCommentText(commentId: Long){
+        viewModelScope.launch {
+            val comment = database.get(commentId)
+            newCommentText.value = comment.text
+        }
     }
 
     private fun saveEditedComment(commentId: Long){
