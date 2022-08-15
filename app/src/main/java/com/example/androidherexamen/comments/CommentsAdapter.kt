@@ -11,12 +11,12 @@ import com.example.androidherexamen.databinding.CommentsViewBinding
 import com.example.androidherexamen.databinding.PostViewBinding
 import com.example.androidherexamen.main.DeletePostListener
 
-class CommentsAdapter(val deleteCommentListener: DeleteCommentListener, val replyCommentListener: ReplyCommentListener) : ListAdapter<Comment, CommentsAdapter.ViewHolder>(
+class CommentsAdapter(val deleteCommentListener: DeleteCommentListener, val replyCommentListener: ReplyCommentListener, val editCommentListener: EditCommentListener) : ListAdapter<Comment, CommentsAdapter.ViewHolder>(
     CommentDiffCallback()
 ){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), deleteCommentListener, replyCommentListener)
+        holder.bind(getItem(position), deleteCommentListener, replyCommentListener, editCommentListener)
     }
 
 
@@ -27,11 +27,12 @@ class CommentsAdapter(val deleteCommentListener: DeleteCommentListener, val repl
 
     class ViewHolder private constructor(val binding: CommentsViewBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Comment, deleteCommentListener: DeleteCommentListener, replyCommentListener: ReplyCommentListener) {
+        fun bind(item: Comment, deleteCommentListener: DeleteCommentListener, replyCommentListener: ReplyCommentListener, editCommentListener: EditCommentListener) {
 
             binding.comment = item
             binding.deleteCommentClickListener = deleteCommentListener
             binding.replyCommentClickListener = replyCommentListener
+            binding.editCommentClickListener = editCommentListener
             binding.executePendingBindings()
 
         }
@@ -63,5 +64,9 @@ class DeleteCommentListener(val clickListener: (commentId: Long) -> Unit){
 }
 
 class ReplyCommentListener(val clickListener: (commentId: Long) -> Unit){
+    fun onClick(comment: Comment) = clickListener(comment.commentId)
+}
+
+class EditCommentListener(val clickListener: (commentId: Long) -> Unit){
     fun onClick(comment: Comment) = clickListener(comment.commentId)
 }

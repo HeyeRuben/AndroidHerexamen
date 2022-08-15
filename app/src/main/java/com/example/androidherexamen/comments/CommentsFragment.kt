@@ -46,12 +46,15 @@ class CommentsFragment : Fragment() {
         },
         ReplyCommentListener{
             commentId -> commentsViewModel.onReplyToCommentClicked(commentId)
+        },
+        EditCommentListener{
+            commentId -> commentsViewModel.onEditCommentClicked(commentId)
         })
 
         binding.commentsList.adapter = adapter
 
 
-        commentsViewModel.isSubComment.observe(this, Observer {
+        commentsViewModel.isResetButtonVisible.observe(this, Observer {
             val bttn = binding.buttonReset
 
             if(it == true) {

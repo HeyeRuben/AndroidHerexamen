@@ -13,8 +13,10 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
     val newCommentText = MutableLiveData("")
     val replyCommentNotifier = MutableLiveData("Antwoord op post")
 
-    val isSubComment = MutableLiveData(false)
+    val isResetButtonVisible = MutableLiveData(false)
     private var subCommentId : Long? = null
+    private var isEdit: Boolean = false
+    private var editCommentId: Long? = null
 
     // Bevat de lijst met posts
     val comments = database.getAllByPostId(postId) // Impl: via string formatter de data weergeven
@@ -24,15 +26,12 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
         var isValidated = validateNewComment()
 
         if(isValidated){
-
-            viewModelScope.launch {
-                val newComment = Comment()
-                newComment.postId = postId
-                newComment.text = newCommentText.value.toString()
-                newComment.isSubComment = isSubComment.value!!
-                newComment.subCommentId = subCommentId
-                insert(newComment)
-                resetValues()
+            if(isEdit){
+                // Edited comment
+                saveEditedComment(editCommentId!!)
+            } else {
+                // New comment
+                saveNewComment()
             }
         }
 
@@ -42,14 +41,16 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
         newCommentText.value = ""
         replyCommentNotifier.value = ""
         replyCommentNotifier.value = "Antwoord op post"
-        isSubComment.value = false
+        isResetButtonVisible.value = false
         subCommentId = 0L
+        isEdit = false
+        editCommentId = null
     }
 
     fun onReplyToCommentClicked(commentId: Long){
         val comment = comments.value?.filter { it.commentId == commentId }
         replyCommentNotifier.value = "Antwoord op user: ${comment?.first()?.userId}"
-        isSubComment.value = true
+        isResetButtonVisible.value = true
         subCommentId = commentId
     }
 
@@ -61,15 +62,50 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
         database.insert(newComment)
     }
 
+    private suspend fun update(comment: Comment){
+        if(comment != null)
+            database.update(comment)
+    }
+
     private suspend fun delete(comment: Comment) {
         if(comment != null)
-        database.delete(comment)
+            database.delete(comment)
     }
 
     fun onDeleteCommentClicked(commentId: Long){
         viewModelScope.launch {
             val comment = database.get(commentId)
             delete(comment)
+        }
+    }
+
+    fun onEditCommentClicked(commentId: Long){
+        editCommentId = commentId
+        replyCommentNotifier.value = "Bewerk comment: $commentId"
+        isEdit = true
+        isResetButtonVisible.value = true
+    }
+
+    private fun saveEditedComment(commentId: Long){
+        if(validateNewComment()){
+            viewModelScope.launch {
+                val comment = database.get(commentId)
+                comment.text = newCommentText.value!!
+                update(comment)
+                resetValues()
+            }
+        }
+    }
+
+    private fun saveNewComment(){
+        viewModelScope.launch {
+            val newComment = Comment()
+            newComment.postId = postId
+            newComment.text = newCommentText.value.toString()
+            newComment.isSubComment = isResetButtonVisible.value!!
+            newComment.subCommentId = subCommentId
+            insert(newComment)
+            resetValues()
         }
     }
 }

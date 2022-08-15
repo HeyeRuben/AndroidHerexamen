@@ -13,6 +13,9 @@
         <variable
             name="replyCommentClickListener"
             type="com.example.androidherexamen.comments.ReplyCommentListener" />
+        <variable
+            name="editCommentClickListener"
+            type="com.example.androidherexamen.comments.EditCommentListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -30,6 +33,18 @@
             android:layout_width="match_parent"
             android:layout_height="196dp">
 
+
+            <Button
+                android:id="@+id/comment_reply2"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> editCommentClickListener.onClick(comment)}"
+                android:text="Edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/comment_reply" />
 
             <Button
                 android:id="@+id/comment_delete"
