@@ -76,7 +76,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
-                android:text="Ruben Heye"
+                app:commentHeader="@{comment}"
                 app:layout_constraintEnd_toStartOf="@+id/comment_delete"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
