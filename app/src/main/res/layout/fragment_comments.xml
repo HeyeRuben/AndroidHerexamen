@@ -32,12 +32,12 @@
             android:layout_width="350dp"
             android:layout_height="499dp"
             android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/testButton2"
+            app:layout_constraintBottom_toTopOf="@+id/buttonReset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.134" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/newCommentText"
@@ -56,12 +56,14 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="@{CommentsViewModel.replyCommentNotifier}"
             app:layout_constraintBottom_toTopOf="@+id/newCommentText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintEnd_toStartOf="@+id/buttonReset"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -70,8 +72,8 @@
             android:layout_height="48dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="16dp"
-            android:text="X"
             android:onClick="@{() -> CommentsViewModel.resetValues()}"
+            android:text="X"
             app:layout_constraintBottom_toTopOf="@+id/testButton2"
             app:layout_constraintEnd_toEndOf="parent" />
 
