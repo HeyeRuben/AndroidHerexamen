@@ -1,5 +1,6 @@
 package com.example.androidherexamen.main
 
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -23,6 +24,13 @@ fun ImageView.setPostImage(item: Post?) {
 fun TextView.setPostLinks(item: Post?) {
     item?.let {
         text = item.links
+    }
+}
+
+@BindingAdapter("postFavorite")
+fun CheckBox.setPostFavorite(item: Post?) {
+    item?.let {
+        isChecked = item.favorite
     }
 }
 
