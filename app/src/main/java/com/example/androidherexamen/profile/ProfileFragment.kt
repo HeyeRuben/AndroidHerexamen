@@ -43,7 +43,10 @@ class ProfileFragment : Fragment() {
                 postId -> profileViewModel.onCommentsClicked(postId)
         }, DeletePostListener {
                 postId -> profileViewModel.onDeletePostClicked(postId)
+        }, AddPostToFavoritesClickListener {
+                postId -> profileViewModel.onFavoritePostClicked(postId)
         })
+
         binding.postsListProfile.adapter = adapter
 
         profileViewModel.navigateToComments.observe(this, Observer {post ->

@@ -16,7 +16,12 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
 
     private suspend fun delete(post: Post){
         if(post != null)
-        database.delete(post)
+            database.delete(post)
+    }
+
+    private suspend fun update(post: Post){
+        if(post != null)
+            database.update(post)
     }
 
     private val _navigateToComments = MutableLiveData<Long?>()
@@ -31,6 +36,16 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
         viewModelScope.launch {
             val post = database.get(postId)
             delete(post)
+        }
+    }
+
+    fun onFavoritePostClicked(postId: Long){
+        viewModelScope.launch {
+            val post = database.get(postId)
+
+            post.favorite = post.favorite != true
+
+            update(post)
         }
     }
 
