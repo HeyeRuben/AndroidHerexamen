@@ -8,7 +8,11 @@
         android:id="@+id/dashboard"
         android:name="com.example.androidherexamen.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/login"
         android:name="com.example.androidherexamen.login.login"
