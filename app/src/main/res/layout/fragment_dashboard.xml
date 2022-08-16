@@ -14,19 +14,17 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/nieuwe_posts"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="5dp"
             android:text="NIEUW"
-            app:layout_constraintEnd_toStartOf="@+id/button6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/gelezen_posts"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -36,23 +34,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/beantwoorde_posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
             android:text="BEANTWOORD"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/gelezen_posts"
+            app:layout_constraintStart_toEndOf="@+id/nieuwe_posts"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dashboard_posts_list"
             android:layout_width="409dp"
             android:layout_height="665dp"
-            android:layout_marginTop="1dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button6" />
+            app:layout_constraintTop_toBottomOf="@+id/beantwoorde_posts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
