@@ -1,12 +1,17 @@
 package com.example.androidherexamen
 
 import androidx.room.Room
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.androidherexamen.database.*
+import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 import java.io.IOException
 
+@RunWith(AndroidJUnit4::class)
 class MyDatabaseTests {
 
     private lateinit var postDatabaseDAO: PostDatabaseDAO
@@ -34,14 +39,16 @@ class MyDatabaseTests {
     fun closeDb() {
         db.close()
     }
- /*
+
     @Test
     @Throws(Exception::class)
-    fun insertAndGetPost() {
+    suspend fun insertAndCountShouldBePlusOne() {
+        val currentAmount = postDatabaseDAO.getAll().value?.size
         val post = Post()
         postDatabaseDAO.insert(post)
-        val newPost = postDatabaseDAO.getAllByUserId()
-        assertEquals(tonight?.sleepQuality, -1)
+        val newPosts = postDatabaseDAO.getAll().value?.size
+        if (currentAmount != null) {
+            assertEquals(currentAmount + 1, newPosts)
+        }
     }
-  */
 }
