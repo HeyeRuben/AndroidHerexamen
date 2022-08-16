@@ -12,20 +12,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
-import com.example.androidherexamen.databinding.FragmentCommentsBinding
 import com.example.androidherexamen.databinding.FragmentCreatePostBinding
-import com.example.androidherexamen.databinding.FragmentMainBinding
-import com.example.androidherexamen.main.DeletePostListener
 
 class CreatePostFragment : Fragment() {
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentCreatePostBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_post, container, false)
+        val binding: FragmentCreatePostBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_create_post,
+            container,
+            false
+        )
 
         val application = requireNotNull(this.activity).application
 
@@ -38,7 +41,7 @@ class CreatePostFragment : Fragment() {
         binding.viewModel = createPostViewModel
 
         createPostViewModel.navigateToMain.observe(this, Observer {
-            if(it == true){
+            if (it == true) {
                 this.findNavController().navigate(CreatePostFragmentDirections.actionCreatePostFragmentToMain())
                 createPostViewModel.onMainNavigated()
             }

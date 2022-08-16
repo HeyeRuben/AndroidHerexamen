@@ -2,25 +2,22 @@ package com.example.androidherexamen.main
 
 import android.app.Application
 import androidx.lifecycle.*
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.example.androidherexamen.R
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
+class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
 
     // Bevat de lijst met posts
     val posts = database.getAll() // Impl: via string formatter de data weergeven
 
-    private suspend fun delete(post: Post){
-        if(post != null)
+    private suspend fun delete(post: Post) {
+        if (post != null)
             database.delete(post)
     }
 
-    private suspend fun update(post: Post){
-        if(post != null)
+    private suspend fun update(post: Post) {
+        if (post != null)
             database.update(post)
     }
 
@@ -28,18 +25,18 @@ class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: App
     val navigateToComments
         get() = _navigateToComments
 
-    fun onCommentsClicked(postId: Long){
+    fun onCommentsClicked(postId: Long) {
         _navigateToComments.value = postId
     }
 
-    fun onDeletePostClicked(postId: Long){
+    fun onDeletePostClicked(postId: Long) {
         viewModelScope.launch {
             val post = database.get(postId)
             delete(post)
         }
     }
 
-    fun onFavoritePostClicked(postId: Long){
+    fun onFavoritePostClicked(postId: Long) {
         viewModelScope.launch {
             val post = database.get(postId)
 

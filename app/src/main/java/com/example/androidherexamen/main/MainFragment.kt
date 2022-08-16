@@ -23,11 +23,17 @@ class MainFragment : Fragment() {
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        val binding: FragmentMainBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_main,
+            container,
+            false
+        )
 
         val application = requireNotNull(this.activity).application
 
@@ -49,7 +55,7 @@ class MainFragment : Fragment() {
 
         binding.postsList.adapter = adapter
 
-        mainViewModel.navigateToComments.observe(this, Observer {post ->
+        mainViewModel.navigateToComments.observe(this, Observer { post ->
             post?.let {
                 this.findNavController().navigate(MainFragmentDirections
                     .actionMainToCommentsFragment(post))
@@ -57,7 +63,7 @@ class MainFragment : Fragment() {
             }
         })
 
-        binding.testButton.setOnClickListener{
+        binding.testButton.setOnClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionMainToCreatePostFragment())
         }
 

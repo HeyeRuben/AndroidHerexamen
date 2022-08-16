@@ -33,5 +33,3 @@ fun CheckBox.setPostFavorite(item: Post?) {
         isChecked = item.favorite
     }
 }
-
-// Nog toe te voegen voor date & links

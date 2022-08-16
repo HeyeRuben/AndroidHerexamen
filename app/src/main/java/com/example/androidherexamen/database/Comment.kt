@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
-data class Comment (
+data class Comment(
 
     @PrimaryKey(autoGenerate = true)
     var commentId: Long = 0L,
@@ -18,8 +18,5 @@ data class Comment (
 
     var isSubComment: Boolean = false,
 
-    var subCommentId: Long? = 0L,
-
-    //var date: Date
-
+    var subCommentId: Long? = 0L
 )

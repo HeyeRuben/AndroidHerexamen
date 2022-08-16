@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.databinding.PostViewBinding
 
-class PostAdapter(val clickListener: PostCommentsListener, val deletePostListener: DeletePostListener, val addPostToFavoritesListener: AddPostToFavoritesClickListener) : ListAdapter<Post, PostAdapter.ViewHolder>(
+class PostAdapter(
+    val clickListener: PostCommentsListener,
+    val deletePostListener: DeletePostListener,
+    val addPostToFavoritesListener: AddPostToFavoritesClickListener
+) : ListAdapter<Post, PostAdapter.ViewHolder>(
     PostDiffCallback()
-){
+) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener, deletePostListener, addPostToFavoritesListener)
@@ -20,16 +24,20 @@ class PostAdapter(val clickListener: PostCommentsListener, val deletePostListene
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: PostViewBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: PostViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Post, clickListener: PostCommentsListener, deleteClickListener: DeletePostListener, addPostToFavoritesListener: AddPostToFavoritesClickListener) {
+        fun bind(
+            item: Post,
+            clickListener: PostCommentsListener,
+            deleteClickListener: DeletePostListener,
+            addPostToFavoritesListener: AddPostToFavoritesClickListener
+        ) {
 
             binding.post = item
             binding.commentsClickListener = clickListener
             binding.deletePostClickListener = deleteClickListener
             binding.addPostToFavoritesClickListener = addPostToFavoritesListener
             binding.executePendingBindings()
-
         }
 
         companion object {
@@ -42,7 +50,7 @@ class PostAdapter(val clickListener: PostCommentsListener, val deletePostListene
     }
 }
 
-class PostDiffCallback : DiffUtil.ItemCallback<Post>(){
+class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.postId == newItem.postId
@@ -51,17 +59,16 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>(){
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem == newItem
     }
-
 }
 
-class PostCommentsListener(val clickListener: (postId: Long) -> Unit){
+class PostCommentsListener(val clickListener: (postId: Long) -> Unit) {
     fun onClick(post: Post) = clickListener(post.postId)
 }
 
-class DeletePostListener(val clickListener: (postId: Long) -> Unit){
+class DeletePostListener(val clickListener: (postId: Long) -> Unit) {
     fun onClick(post: Post) = clickListener(post.postId)
 }
 
-class AddPostToFavoritesClickListener(val clickListener: (postId: Long) -> Unit){
+class AddPostToFavoritesClickListener(val clickListener: (postId: Long) -> Unit) {
     fun onClick(post: Post) = clickListener(post.postId)
 }

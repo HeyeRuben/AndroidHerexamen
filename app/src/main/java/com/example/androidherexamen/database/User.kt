@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class User (
+data class User(
 
     @PrimaryKey(autoGenerate = true)
     var userId: Long = 0L,

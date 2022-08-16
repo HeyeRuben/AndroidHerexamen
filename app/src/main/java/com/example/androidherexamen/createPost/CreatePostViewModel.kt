@@ -6,7 +6,10 @@ import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class CreatePostViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
+class CreatePostViewModel(
+    val database: PostDatabaseDAO,
+    application: Application
+) : AndroidViewModel(application) {
 
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
@@ -24,11 +27,11 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
         database.insert(newPost)
     }
 
-    fun onSavePostClicked(){
+    fun onSavePostClicked() {
 
         var isValidated = validateNewPost()
 
-        if(isValidated){
+        if (isValidated) {
             viewModelScope.launch {
                 val newPost = Post()
                 newPost.text = newPostText.value!!.toString()
@@ -46,9 +49,9 @@ class CreatePostViewModel(val database: PostDatabaseDAO, application: Applicatio
 
         var enteredData = 0
 
-        if(!newPostText.value.isNullOrEmpty())
+        if (!newPostText.value.isNullOrEmpty())
             enteredData++
-        if(!newPostLinks.value.isNullOrEmpty())
+        if (!newPostLinks.value.isNullOrEmpty())
             enteredData++
 
         return enteredData > 0

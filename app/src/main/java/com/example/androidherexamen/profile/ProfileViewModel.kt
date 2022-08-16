@@ -3,24 +3,23 @@ package com.example.androidherexamen.profile
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application){
+class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
 
     // Bevat de lijst met favoriete posts
     val favPosts = database.getAllFavPosts() // Impl: via string formatter de data weergeven
 
-    private suspend fun delete(post: Post){
-        if(post != null)
+    private suspend fun delete(post: Post) {
+        if (post != null)
             database.delete(post)
     }
 
-    private suspend fun update(post: Post){
-        if(post != null)
+    private suspend fun update(post: Post) {
+        if (post != null)
             database.update(post)
     }
 
@@ -28,18 +27,18 @@ class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: 
     val navigateToComments
         get() = _navigateToComments
 
-    fun onCommentsClicked(postId: Long){
+    fun onCommentsClicked(postId: Long) {
         _navigateToComments.value = postId
     }
 
-    fun onDeletePostClicked(postId: Long){
+    fun onDeletePostClicked(postId: Long) {
         viewModelScope.launch {
             val post = database.get(postId)
             delete(post)
         }
     }
 
-    fun onFavoritePostClicked(postId: Long){
+    fun onFavoritePostClicked(postId: Long) {
         viewModelScope.launch {
             val post = database.get(postId)
 
@@ -52,5 +51,4 @@ class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: 
     fun onCommentsNavigated() {
         _navigateToComments.value = null
     }
-
 }

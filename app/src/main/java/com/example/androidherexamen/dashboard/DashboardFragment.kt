@@ -8,22 +8,26 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentDashboardBinding
-import com.example.androidherexamen.databinding.FragmentMainBinding
 import com.example.androidherexamen.main.*
 
 class DashboardFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentDashboardBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+        val binding: FragmentDashboardBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_dashboard,
+            container,
+            false
+        )
 
         val application = requireNotNull(this.activity).application
 
@@ -45,7 +49,7 @@ class DashboardFragment : Fragment() {
 
         binding.dashboardPostsList.adapter = adapter
 
-        dashboardViewModel.navigateToComments.observe(this, Observer {post ->
+        dashboardViewModel.navigateToComments.observe(this, Observer { post ->
             post?.let {
                 this.findNavController().navigate(
                     DashboardFragmentDirections

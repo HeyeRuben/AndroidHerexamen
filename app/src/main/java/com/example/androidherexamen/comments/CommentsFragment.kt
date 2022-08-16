@@ -12,52 +12,53 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.androidherexamen.R
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentCommentsBinding
-import com.example.androidherexamen.databinding.FragmentMainBinding
-import com.example.androidherexamen.main.DeletePostListener
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CommentsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CommentsFragment : Fragment() {
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentCommentsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_comments, container, false)
+        val binding: FragmentCommentsBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_comments,
+            container,
+            false
+        )
 
         val application = requireNotNull(this.activity).application
 
         val dataSource = MyDatabase.getInstance(application).commentDatabaseDAO
 
-        val viewModelFactory = CommentsViewModelFactory(CommentsFragmentArgs.fromBundle(requireArguments()).postId, dataSource, application)
+        val viewModelFactory = CommentsViewModelFactory(
+            CommentsFragmentArgs.fromBundle(requireArguments()).postId,
+            dataSource,
+            application
+        )
 
         val commentsViewModel = ViewModelProvider(this, viewModelFactory).get(CommentsViewModel::class.java)
 
         binding.commentsViewModel = commentsViewModel
 
-
         val adapter = CommentsAdapter(DeleteCommentListener {
                 commentId -> commentsViewModel.onDeleteCommentClicked(commentId)
         },
-        ReplyCommentListener{
+        ReplyCommentListener {
             commentId -> commentsViewModel.onReplyToCommentClicked(commentId)
         },
-        EditCommentListener{
+        EditCommentListener {
             commentId -> commentsViewModel.onEditCommentClicked(commentId)
         })
 
         binding.commentsList.adapter = adapter
 
-
         commentsViewModel.isResetButtonVisible.observe(this, Observer {
             val bttn = binding.buttonReset
 
-            if(it == true) {
+            if (it == true) {
                 bttn.visibility = View.VISIBLE
             } else {
                 bttn.visibility = View.INVISIBLE

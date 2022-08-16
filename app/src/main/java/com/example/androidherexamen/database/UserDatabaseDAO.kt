@@ -1,18 +1,16 @@
 package com.example.androidherexamen.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface UserDatabaseDAO {
 
     @Insert
-    fun insert (user: User)
+    fun insert(user: User)
 
     @Update
-    fun update (user: User)
+    fun update(user: User)
 
     @Delete
-    fun delete (user: User)
-
+    fun delete(user: User)
 }

@@ -1,10 +1,8 @@
 package com.example.androidherexamen.comments
 
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.androidherexamen.database.Comment
-import com.example.androidherexamen.database.Post
 
 @BindingAdapter("commentText")
 fun TextView.setCommentText(item: Comment?) {
@@ -17,7 +15,7 @@ fun TextView.setCommentText(item: Comment?) {
 fun TextView.setHeaderext(item: Comment?) {
     item?.let {
 
-        if(item.isSubComment){
+        if (item.isSubComment) {
             "User ${item.userId} > User ${item.userId}".also { text = it }
         } else {
             "User ${item.userId}".also { text = it }

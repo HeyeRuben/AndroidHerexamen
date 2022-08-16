@@ -5,14 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidherexamen.network.QuoteOfTheDayApi
-import com.example.androidherexamen.network.QuoteOfTheDayApiService
 import com.example.androidherexamen.network.QuoteOfTheDayProperty
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class QuoteOfTheDayViewModel : ViewModel(){
+class QuoteOfTheDayViewModel : ViewModel() {
     // The internal MutableLiveData Property that stores the most recent response
     private val _response = MutableLiveData<QuoteOfTheDayProperty>()
 
@@ -34,19 +30,13 @@ class QuoteOfTheDayViewModel : ViewModel(){
     private fun getQuoteOfTheDayProperties() {
 
         viewModelScope.launch {
-                try{
+                try {
 
                     var listResult = QuoteOfTheDayApi.retrofitService.getProperties()
                     _response.value = listResult.first()
-
-                } catch(t:Throwable) {
-
-                 //   _response.value = "Failure: " + t.message
-
+                } catch (t: Throwable) {
                 }
-
         }
-
     }
 
     override fun onCleared() {
