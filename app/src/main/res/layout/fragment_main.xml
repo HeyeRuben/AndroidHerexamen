@@ -31,6 +31,7 @@
 
         <Button
             android:id="@+id/testButton"
+            style="@style/buttons"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"

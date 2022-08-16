@@ -18,6 +18,7 @@
 
         <Button
             android:id="@+id/testButton2"
+            style="@style/buttons"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="28dp"
@@ -69,6 +70,7 @@
 
         <Button
             android:id="@+id/buttonReset"
+            style="@style/buttons"
             android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="28dp"
