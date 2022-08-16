@@ -38,6 +38,7 @@
 
             <TextView
                 android:id="@+id/post_date"
+                style="@style/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
@@ -63,6 +64,7 @@
 
             <TextView
                 android:id="@+id/post_text"
+                style="@style/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -89,6 +91,7 @@
 
             <TextView
                 android:id="@+id/post_links"
+                style="@style/textView"
                 android:layout_width="324dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
