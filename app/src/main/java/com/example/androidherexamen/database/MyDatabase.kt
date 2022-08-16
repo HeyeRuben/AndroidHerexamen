@@ -12,7 +12,7 @@ abstract class MyDatabase : RoomDatabase() {
     abstract val postDatabaseDAO: PostDatabaseDAO
     abstract val commentDatabaseDAO: CommentDatabaseDAO
     abstract val userDatabaseDAO: UserDatabaseDAO
-    abstract val databaseQuoteOfTheDay: DatabaseQuoteOfTheDay
+    abstract val quoteOfTheDayDAO: QuoteOfTheDayDAO
 
     companion object {
 

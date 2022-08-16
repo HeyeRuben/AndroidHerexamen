@@ -13,12 +13,3 @@ data class DatabaseQuoteOfTheDay (
     val author: String
 
 )
-
-fun List<DatabaseQuoteOfTheDay>.asDomainModel(): List<QuoteOfTheDayProperty> {
-    return map {
-        QuoteOfTheDayProperty (
-            q = it.quote,
-            a = it.author,
-            date = it.date)
-    }
-}

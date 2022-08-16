@@ -10,9 +10,9 @@ import com.example.androidherexamen.network.QuoteOfTheDayProperty
 interface QuoteOfTheDayDAO{
 
     @Query("SELECT * FROM databasequoteoftheday")
-    fun getQuoteOfTheDay(): List<QuoteOfTheDayProperty>
+    fun getQuoteOfTheDay(): List<DatabaseQuoteOfTheDay>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(quoteOfTheDayProperty: QuoteOfTheDayProperty)
+    fun insert(quoteOfTheDayProperty: DatabaseQuoteOfTheDay)
 
 }
