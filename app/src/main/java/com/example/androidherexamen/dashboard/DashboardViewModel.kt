@@ -29,6 +29,18 @@ class DashboardViewModel(userId: Int, val database: PostDatabaseDAO, application
         // mag dit niet doen
     }
 
+    fun onNieuwePostsClicked(){
+
+    }
+
+    fun onBeantwoordePostsClicked(){
+
+    }
+
+    fun onGelezenPostsClicked(){
+        
+    }
+
     fun onCommentsNavigated() {
         _navigateToComments.value = null
     }

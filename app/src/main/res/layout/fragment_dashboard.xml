@@ -20,6 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="NIEUW"
+            android:onClick="@{() -> dashboardViewModel.onNieuwePostsClicked()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +31,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="GELEZEN"
+            android:onClick="@{() -> dashboardViewModel.onGelezenPostsClicked()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +43,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
             android:text="BEANTWOORD"
+            android:onClick="@{() -> dashboardViewModel.onBeantwoordePostsClicked()}"
             app:layout_constraintEnd_toStartOf="@+id/gelezen_posts"
             app:layout_constraintStart_toEndOf="@+id/nieuwe_posts"
             app:layout_constraintTop_toTopOf="parent" />
