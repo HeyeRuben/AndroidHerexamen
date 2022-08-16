@@ -21,4 +21,7 @@ interface CommentDatabaseDAO {
     @Query("SELECT * FROM Comment WHERE commentId = :id")
     suspend fun get(id: Long) : Comment
 
+    @Query("SELECT * FROM Comment WHERE userId = :id")
+    suspend fun getAllByUser(id: Long) : Comment
+
 }
