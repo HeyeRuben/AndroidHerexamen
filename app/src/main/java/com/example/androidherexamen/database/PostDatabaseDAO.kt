@@ -1,6 +1,7 @@
 package com.example.androidherexamen.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -23,5 +24,8 @@ interface PostDatabaseDAO {
 
     @Query("SELECT * FROM Post WHERE postId = :id")
     suspend fun get(id: Long) : Post
+
+    @Query("SELECT p.postId, p.userId, p.text, p.photo, p.links, p.favorite FROM Post p  JOIN Comment c ON p.postId == c.postId WHERE c.userId == :id")
+    fun getAllPostsWithCommentsByUser(id: Long) : LiveData<List<Post>>
 
 }

@@ -29,9 +29,7 @@ class DashboardFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
 
-        val commentsDataSource = MyDatabase.getInstance(application).commentDatabaseDAO
-
-        val viewModelFactory = DashboardViewModelFactory(0, dataSource, commentsDataSource ,application)
+        val viewModelFactory = DashboardViewModelFactory(0, dataSource, application)
 
         val dashboardViewModel = ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
 
