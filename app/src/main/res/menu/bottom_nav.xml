@@ -16,4 +16,8 @@
         android:title="Quote Of The Day"
         android:icon="@drawable/quote"
         android:id="@+id/quoteOfTheDay" />
+    <item
+        android:title="Login"
+        android:icon="@drawable/login"
+        android:id="@+id/login" />
 </menu>
