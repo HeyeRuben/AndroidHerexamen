@@ -1,6 +1,8 @@
 package com.example.androidherexamen.createPost
 
 import android.app.Application
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.*
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
@@ -14,6 +16,7 @@ class CreatePostViewModel(
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
     val addNewPostResult = MutableLiveData("")
+    lateinit var imageBitmapString: String
 
     private val _navigateToMain = MutableLiveData(false)
     val navigateToMain: LiveData<Boolean>
@@ -36,6 +39,7 @@ class CreatePostViewModel(
                 val newPost = Post()
                 newPost.text = newPostText.value!!.toString()
                 newPost.links = newPostLinks.value!!.toString()
+                newPost.photo = imageBitmapString
                 insert(newPost)
                 addNewPostResult.value = "Succes."
                 _navigateToMain.value = true
