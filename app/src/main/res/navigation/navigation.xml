@@ -14,11 +14,6 @@
             app:destination="@id/commentsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/login"
-        android:name="com.example.androidherexamen.login.login"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
-    <fragment
         android:id="@+id/main"
         android:name="com.example.androidherexamen.main.MainFragment"
         android:label="fragment_main"
@@ -59,4 +54,8 @@
         android:id="@+id/quoteOfTheDay"
         android:name="com.example.androidherexamen.quoteOfTheDay.QuoteOfTheDayFragment"
         android:label="QuoteOfTheDayFragment" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.devops_project_android_2122_h2_android.ui.login.LoginFragment"
+        android:label="fragment_login" />
 </navigation>

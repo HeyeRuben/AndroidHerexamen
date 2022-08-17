@@ -36,8 +36,8 @@ class LoginFragment : Fragment() {
 
         // OAUTH
         account = Auth0(
-            "FhKg1EKIn9ffOAsjZXcmIEsmnjAJ0XsN",
-            "dev-1yjp-jfg.us.auth0.com"
+            "u1vCIzePcoigMTfaKX67IDF3UnUynKvp",
+            "hooopgallery.eu.auth0.com"
         )
 
         val button = view.findViewById<Button>(R.id.loginbutton)
