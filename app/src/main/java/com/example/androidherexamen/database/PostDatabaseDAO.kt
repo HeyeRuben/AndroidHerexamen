@@ -24,6 +24,6 @@ interface PostDatabaseDAO {
     @Query("SELECT * FROM Post WHERE postId = :id")
     suspend fun get(id: Long): Post
 
-    @Query("SELECT p.postId, p.userId, p.text, p.photo, p.links, p.favorite FROM Post p  JOIN Comment c ON p.postId == c.postId WHERE c.userId == :id")
+    @Query("SELECT p.postId, p.userId, p.text, p.photo, p.links, p.favorite, p.username FROM Post p  JOIN Comment c ON p.postId == c.postId WHERE c.userId == :id")
     fun getAllPostsWithCommentsByUser(id: Long): LiveData<List<Post>>
 }

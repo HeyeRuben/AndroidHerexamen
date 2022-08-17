@@ -29,7 +29,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/post_date"
+                android:id="@+id/post_username"
                 style="@style/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -37,10 +37,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
-                android:text="11/08/2022"
                 app:layout_constraintEnd_toStartOf="@+id/post_delete"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:postUsername="@{post}" />
 
             <Button
                 android:id="@+id/post_delete"
@@ -65,7 +65,7 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_date"
+                app:layout_constraintTop_toBottomOf="@+id/post_username"
                 app:postText="@{post}" />
 
             <ImageView
@@ -78,8 +78,10 @@
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/post_links"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_text"
+                app:layout_constraintVertical_bias="0.0"
                 app:postImage="@{post}" />
 
             <TextView

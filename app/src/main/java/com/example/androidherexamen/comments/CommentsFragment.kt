@@ -1,6 +1,8 @@
 package com.example.androidherexamen.comments
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +11,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
+import com.example.androidherexamen.createPost.CreatePostFragmentDirections
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentCommentsBinding
 
@@ -70,6 +74,18 @@ class CommentsFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
+
+        val userId = sp.getString("id", null)
+        val name = sp.getString("name", null)
+
+        if (userId != null && name != null) {
+            commentsViewModel.loggedInUserId = userId
+            commentsViewModel.loggedInUsername = name
+        }
 
         binding.lifecycleOwner = this
 

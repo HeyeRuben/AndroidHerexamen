@@ -31,17 +31,16 @@ fun TextView.setPostLinks(item: Post?) {
     }
 }
 
+@BindingAdapter("postUsername")
+fun TextView.setPostUsername(item: Post?) {
+    item?.let {
+        text = item.username
+    }
+}
+
 @BindingAdapter("postFavorite")
 fun CheckBox.setPostFavorite(item: Post?) {
     item?.let {
         isChecked = item.favorite
     }
-}
-
-fun convertStringToBitmap(string: String?): Bitmap? {
-    val byteArray1: ByteArray = Base64.decode(string, Base64.DEFAULT)
-    return BitmapFactory.decodeByteArray(
-        byteArray1, 0,
-        byteArray1.size
-    )
 }

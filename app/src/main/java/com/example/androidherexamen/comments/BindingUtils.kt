@@ -16,11 +16,9 @@ fun TextView.setHeaderext(item: Comment?) {
     item?.let {
 
         if (item.isSubComment) {
-            "User ${item.userId} > User ${item.userId}".also { text = it }
+            "${item.username} > ${item.subCommentUsername}".also { text = it }
         } else {
-            "User ${item.userId}".also { text = it }
+            "${item.username}".also { text = it }
         }
     }
 }
-
-// Nog toe te voegen voor date & links

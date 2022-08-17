@@ -10,7 +10,7 @@ data class Comment(
     @PrimaryKey(autoGenerate = true)
     var commentId: Long = 0L,
 
-    var userId: Long = 0L,
+    var userId: String = "",
 
     var postId: Long = 0L,
 
@@ -18,5 +18,9 @@ data class Comment(
 
     var isSubComment: Boolean = false,
 
-    var subCommentId: Long? = 0L
+    var subCommentId: Long? = 0L,
+
+    var username: String = "",
+
+    var subCommentUsername: String = ""
 )

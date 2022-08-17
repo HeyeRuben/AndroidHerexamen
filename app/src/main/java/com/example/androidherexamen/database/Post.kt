@@ -11,14 +11,16 @@ data class Post(
     @PrimaryKey(autoGenerate = true)
     var postId: Long = 0L,
 
-    var userId: Long = 0L,
+    var userId: String = "",
 
     var text: String = "",
 
-    var photo: Bitmap,
+    var photo: Bitmap? = null,
 
     var links: String = "",
 
-    var favorite: Boolean = false
+    var favorite: Boolean = false,
+
+    var username: String = ""
 
 )
