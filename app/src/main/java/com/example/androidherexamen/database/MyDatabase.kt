@@ -9,7 +9,7 @@ import com.example.androidherexamen.converters.Converters
 
 @Database(
     entities = [Post::class, Comment::class, User::class],
-    version = 11,
+    version = 12,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

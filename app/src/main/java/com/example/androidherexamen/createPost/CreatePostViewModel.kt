@@ -19,6 +19,7 @@ class CreatePostViewModel(
     val newPostLinks = MutableLiveData("")
     val addNewPostResult = MutableLiveData("")
     var loggedInUserId: String = ""
+    var loggedInUsername: String = ""
     var imageBitmap: Bitmap? = null
 
     private val _navigateToMain = MutableLiveData(false)
@@ -44,6 +45,7 @@ class CreatePostViewModel(
                 viewModelScope.launch {
                     val newPost = Post()
                     newPost.userId = loggedInUserId
+                    newPost.username = loggedInUsername
                     newPost.text = newPostText.value!!.toString()
                     newPost.links = newPostLinks.value!!.toString()
                     newPost.photo = imageBitmap

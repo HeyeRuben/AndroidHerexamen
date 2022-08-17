@@ -19,6 +19,8 @@ data class Post(
 
     var links: String = "",
 
-    var favorite: Boolean = false
+    var favorite: Boolean = false,
+
+    var username: String = ""
 
 )
