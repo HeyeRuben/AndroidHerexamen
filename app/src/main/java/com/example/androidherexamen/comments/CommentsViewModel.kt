@@ -10,6 +10,8 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
 
     val newCommentText = MutableLiveData("")
     val replyCommentNotifier = MutableLiveData("Antwoord op post")
+    var loggedInUserId: String = ""
+    var loggedInUsername: String = ""
 
     val isResetButtonVisible = MutableLiveData(false)
     private var subCommentId: Long? = null
@@ -46,7 +48,7 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
 
     fun onReplyToCommentClicked(commentId: Long) {
         val comment = comments.value?.filter { it.commentId == commentId }
-        replyCommentNotifier.value = "Antwoord op user: ${comment?.first()?.userId}"
+        replyCommentNotifier.value = "Antwoord op: ${comment?.first()?.username}"
         isResetButtonVisible.value = true
         subCommentId = commentId
     }
@@ -103,14 +105,27 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
     }
 
     private fun saveNewComment() {
-        viewModelScope.launch {
-            val newComment = Comment()
-            newComment.postId = postId
-            newComment.text = newCommentText.value.toString()
-            newComment.isSubComment = isResetButtonVisible.value!!
-            newComment.subCommentId = subCommentId
-            insert(newComment)
-            resetValues()
+
+        if (!loggedInUserId.isNullOrEmpty()){
+            viewModelScope.launch {
+                val newComment = Comment()
+                newComment.userId = loggedInUserId
+                newComment.username = loggedInUsername
+                newComment.postId = postId
+                newComment.text = newCommentText.value.toString()
+                newComment.isSubComment = isResetButtonVisible.value!!
+                newComment.subCommentId = subCommentId
+
+                if (newComment.isSubComment) {
+                    val comment = newComment.subCommentId?.let { database.get(it) }
+                    if (comment != null) {
+                        newComment.subCommentUsername = comment.username
+                    }
+                }
+
+                insert(newComment)
+                resetValues()
+            }
         }
     }
 }
