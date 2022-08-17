@@ -54,6 +54,7 @@ dependencies {
 
     // Room and Lifecycle dependencies
     implementation "androidx.room:room-runtime:$version_room"
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
     kapt "androidx.room:room-compiler:$version_room"
     // The APIs in lifecycle-extensions have been deprecated. Instead, add dependencies for the specific Lifecycle artifacts you need.
     // implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
@@ -92,6 +93,8 @@ dependencies {
     // Retrofit coroutine adapter
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
 
-    //KTlint
+    // Auth0
+    implementation 'com.auth0.android:auth0:2.+'
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
 
 }
