@@ -1,7 +1,12 @@
 package com.example.androidherexamen.createPost
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.provider.MediaStore
+import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +20,9 @@ import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentCreatePostBinding
 
 class CreatePostFragment : Fragment() {
+
+    lateinit var viewModelRef: CreatePostViewModel
+    lateinit var bindingRef: FragmentCreatePostBinding
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
@@ -38,7 +46,20 @@ class CreatePostFragment : Fragment() {
 
         val createPostViewModel = ViewModelProvider(this, viewModelFactory).get(CreatePostViewModel::class.java)
 
+        viewModelRef = createPostViewModel
+        bindingRef = binding
+
         binding.viewModel = createPostViewModel
+
+        binding.openFiles.setOnClickListener {
+            pickImageFromGallery()
+        }
+
+        binding.openCameraButton.setOnClickListener {
+            openCamera()
+        }
+
+        binding.imageView
 
         createPostViewModel.navigateToMain.observe(this, Observer {
             if (it == true) {
@@ -51,4 +72,23 @@ class CreatePostFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun pickImageFromGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, 100)
+    }
+
+    private fun openCamera(){
+        val intent = Intent(ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, 101)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+            bindingRef.imageView.setImageURI(data?.data)
+            viewModelRef.imageBitmap = (bindingRef.imageView.drawable as BitmapDrawable).bitmap
+    }
+
 }

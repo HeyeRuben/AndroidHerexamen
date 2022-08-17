@@ -1,5 +1,6 @@
 package com.example.androidherexamen.database
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.androidherexamen.R.drawable.image_placeholder
@@ -14,7 +15,7 @@ data class Post(
 
     var text: String = "",
 
-    var photo: Int = image_placeholder,
+    var photo: Bitmap,
 
     var links: String = "",
 
