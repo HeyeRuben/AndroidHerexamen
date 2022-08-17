@@ -1,5 +1,7 @@
 package com.example.devops_project_android_2122_h2_android.ui.login
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
@@ -118,6 +121,15 @@ class LoginFragment : Fragment() {
                         AuthenticationException> {
                     override fun onSuccess(payload: Void?) {
                         Toast.makeText(context, "logout OK", Toast.LENGTH_SHORT).show()
+
+                        // Clear SharedPreferences
+                        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser", MODE_PRIVATE)
+                        sp.edit {
+                            this.putString("id", null)
+                            this.putString("name", null)
+                            this.commit()
+                        }
+
                         loggedIn = false
                         setLoggedInText()
                     }
@@ -144,6 +156,16 @@ class LoginFragment : Fragment() {
                     // We have the user's profile!
                     val email = profile.email
                     val name = profile.name
+                    val id = profile.getId()
+
+                    // Add user info to sharedpreferences
+                    val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser", MODE_PRIVATE)
+                    sp.edit {
+                        this.putString("id", id)
+                        this.putString("name", name)
+                        this.commit()
+                    }
+
                     loggedIn = true
                     setLoggedInText()
                 }

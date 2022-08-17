@@ -1,7 +1,9 @@
 package com.example.androidherexamen.createPost
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -67,6 +69,16 @@ class CreatePostFragment : Fragment() {
                 createPostViewModel.onMainNavigated()
             }
         })
+
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
+
+        val userId = sp.getString("id", null)
+
+        if (userId != null) {
+            createPostViewModel.loggedInUserId = userId
+        }
 
         binding.lifecycleOwner = this
 

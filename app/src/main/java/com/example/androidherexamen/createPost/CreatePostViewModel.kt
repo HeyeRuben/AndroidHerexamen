@@ -1,6 +1,8 @@
 package com.example.androidherexamen.createPost
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.*
@@ -16,7 +18,8 @@ class CreatePostViewModel(
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
     val addNewPostResult = MutableLiveData("")
-    lateinit var imageBitmap: Bitmap
+    var loggedInUserId: String = ""
+    var imageBitmap: Bitmap? = null
 
     private val _navigateToMain = MutableLiveData(false)
     val navigateToMain: LiveData<Boolean>
@@ -34,18 +37,23 @@ class CreatePostViewModel(
 
         var isValidated = validateNewPost()
 
-        if (isValidated) {
-            viewModelScope.launch {
-                val newPost = Post(photo = imageBitmap)
-                newPost.text = newPostText.value!!.toString()
-                newPost.links = newPostLinks.value!!.toString()
-                newPost.photo = imageBitmap
-                insert(newPost)
-                addNewPostResult.value = "Succes."
-                _navigateToMain.value = true
-            }
+        if (!validateLoggedInUser()) {
+            addNewPostResult.value = "Error: Je moet inloggen om een post te maken"
         } else {
-            addNewPostResult.value = "Error: je moet een link of post tekst toevoegen."
+            if (isValidated) {
+                viewModelScope.launch {
+                    val newPost = Post()
+                    newPost.userId = loggedInUserId
+                    newPost.text = newPostText.value!!.toString()
+                    newPost.links = newPostLinks.value!!.toString()
+                    newPost.photo = imageBitmap
+                    insert(newPost)
+                    addNewPostResult.value = "Succes."
+                    _navigateToMain.value = true
+                }
+            } else {
+                addNewPostResult.value = "Error: je moet een link of post tekst toevoegen."
+            }
         }
     }
 
@@ -57,7 +65,13 @@ class CreatePostViewModel(
             enteredData++
         if (!newPostLinks.value.isNullOrEmpty())
             enteredData++
+        if (imageBitmap != null)
+            enteredData++
 
         return enteredData > 0
+    }
+
+    private fun validateLoggedInUser(): Boolean {
+        return !loggedInUserId.isNullOrEmpty()
     }
 }
