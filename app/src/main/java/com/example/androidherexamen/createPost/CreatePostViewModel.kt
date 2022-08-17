@@ -16,7 +16,7 @@ class CreatePostViewModel(
     val newPostText = MutableLiveData("")
     val newPostLinks = MutableLiveData("")
     val addNewPostResult = MutableLiveData("")
-    lateinit var imageBitmapString: String
+    lateinit var imageBitmap: Bitmap
 
     private val _navigateToMain = MutableLiveData(false)
     val navigateToMain: LiveData<Boolean>
@@ -36,10 +36,10 @@ class CreatePostViewModel(
 
         if (isValidated) {
             viewModelScope.launch {
-                val newPost = Post()
+                val newPost = Post(photo = imageBitmap)
                 newPost.text = newPostText.value!!.toString()
                 newPost.links = newPostLinks.value!!.toString()
-                newPost.photo = imageBitmapString
+                newPost.photo = imageBitmap
                 insert(newPost)
                 addNewPostResult.value = "Succes."
                 _navigateToMain.value = true

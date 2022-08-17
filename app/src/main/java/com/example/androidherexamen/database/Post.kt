@@ -15,7 +15,7 @@ data class Post(
 
     var text: String = "",
 
-    var photo: String = "",
+    var photo: Bitmap,
 
     var links: String = "",
 

@@ -88,7 +88,7 @@ class CreatePostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
             bindingRef.imageView.setImageURI(data?.data)
-            viewModelRef.imageBitmapString = (bindingRef.imageView.drawable as BitmapDrawable).bitmap.toString()
+            viewModelRef.imageBitmap = (bindingRef.imageView.drawable as BitmapDrawable).bitmap
     }
 
 }

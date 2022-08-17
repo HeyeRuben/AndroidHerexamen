@@ -20,7 +20,7 @@ fun TextView.setPostText(item: Post?) {
 @BindingAdapter("postImage")
 fun ImageView.setPostImage(item: Post?) {
     item?.let {
-        setImageBitmap(convertStringToBitmap(it.photo))
+        setImageBitmap(it.photo)
     }
 }
 
