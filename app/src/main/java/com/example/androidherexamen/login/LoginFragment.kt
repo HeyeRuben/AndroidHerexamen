@@ -154,7 +154,7 @@ class LoginFragment : Fragment() {
 
                 override fun onSuccess(profile: UserProfile) {
                     // We have the user's profile!
-                    val email = profile.email
+                    // val role = profile.getUserMetadata().get("role")
                     val name = profile.name
                     val id = profile.getId()
 
