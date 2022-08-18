@@ -3,11 +3,12 @@ package com.example.androidherexamen.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://zenquotes.io/api/"
+private const val BASE_URL = "https://api.quotable.io/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -20,8 +21,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface QuoteOfTheDayApiService {
-    @GET("today")
-    suspend fun getProperties(): List<QuoteOfTheDayProperty>
+    @GET("random")
+    fun getPropertiesAsync(): Deferred<QuoteOfTheDayProperty>
 }
 
 object QuoteOfTheDayApi {
