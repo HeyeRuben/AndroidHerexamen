@@ -1,5 +1,7 @@
 package com.example.androidherexamen.dashboard
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,9 +35,17 @@ class DashboardFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
 
-        val viewModelFactory = DashboardViewModelFactory(0, dataSource, application)
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
+
+        val viewModelFactory = DashboardViewModelFactory(dataSource, application)
 
         val dashboardViewModel = ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
+
+        val userId = sp.getString("id", null)
+
+        dashboardViewModel.userId.value = userId
 
         binding.dashboardViewModel = dashboardViewModel
 
@@ -49,7 +59,7 @@ class DashboardFragment : Fragment() {
 
         binding.dashboardPostsList.adapter = adapter
 
-        dashboardViewModel.navigateToComments.observe(this, Observer { post ->
+        dashboardViewModel.navigateToComments.observe(this.viewLifecycleOwner, Observer { post ->
             post?.let {
                 this.findNavController().navigate(
                     DashboardFragmentDirections
@@ -58,7 +68,7 @@ class DashboardFragment : Fragment() {
             }
         })
 
-        dashboardViewModel.posts.observe(viewLifecycleOwner, Observer {
+        dashboardViewModel.posts.observe(this.viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
