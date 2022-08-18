@@ -54,8 +54,10 @@ class ProfileFragment : Fragment() {
         )
 
         val userId = sp.getString("id", null)
+        val userName = sp.getString("name", null)
 
         profileViewModel.userId.value = userId
+        profileViewModel.userName.value = userName
 
         binding.postsListProfile.adapter = adapter
 

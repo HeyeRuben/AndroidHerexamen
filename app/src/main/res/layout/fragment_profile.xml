@@ -20,41 +20,12 @@
             android:layout_height="46dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Ruben Heye"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView7"
-            style="@style/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="9dp"
-            android:text="Test Naam"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{profileViewModel.userName}"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/image_placeholder_person" />
-
-        <TextView
-            android:id="@+id/textView8"
-            style="@style/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Begeleider"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button"
@@ -77,18 +48,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/posts_list_profile"
             android:layout_width="409dp"
             android:layout_height="533dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            app:layout_constraintVertical_bias="0.023" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

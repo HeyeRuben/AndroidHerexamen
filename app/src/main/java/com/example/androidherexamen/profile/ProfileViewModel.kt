@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
 
     val userId = MutableLiveData("")
+    val userName = MutableLiveData("")
 
     // Bevat de lijst met posts
     val posts: LiveData<List<Post>> =
