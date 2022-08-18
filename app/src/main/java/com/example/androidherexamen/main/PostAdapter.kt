@@ -1,10 +1,14 @@
 package com.example.androidherexamen.main
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.databinding.PostViewBinding
 
@@ -37,6 +41,19 @@ class PostAdapter(
             binding.commentsClickListener = clickListener
             binding.deletePostClickListener = deleteClickListener
             binding.addPostToFavoritesClickListener = addPostToFavoritesListener
+
+            val sp: SharedPreferences = itemView.context.getSharedPreferences("LoggedInUser",
+                Context.MODE_PRIVATE
+            )
+
+            if (sp.getString("role", null) == Roles.BEGELEIDER.toString()){
+                binding.postFavorite.visibility = View.INVISIBLE
+                binding.postGelezen.visibility = View.VISIBLE
+            } else {
+                binding.postFavorite.visibility = View.VISIBLE
+                binding.postGelezen.visibility = View.INVISIBLE
+            }
+
             binding.executePendingBindings()
         }
 

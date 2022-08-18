@@ -1,8 +1,6 @@
 package com.example.androidherexamen.main
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Base64
+import android.content.SharedPreferences
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
