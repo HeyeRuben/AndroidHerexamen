@@ -1,6 +1,7 @@
 package com.example.androidherexamen.database
 
 import android.content.Context
+import android.provider.ContactsContract
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,16 +9,18 @@ import androidx.room.TypeConverters
 import com.example.androidherexamen.converters.Converters
 
 @Database(
-    entities = [Post::class, Comment::class, User::class],
-    version = 13,
+    entities = [Post::class, Comment::class, User::class, DatabaseQuoteOfTheDay::class],
+    version = 14,
     exportSchema = false
 )
+
 @TypeConverters(Converters::class)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract val postDatabaseDAO: PostDatabaseDAO
     abstract val commentDatabaseDAO: CommentDatabaseDAO
     abstract val userDatabaseDAO: UserDatabaseDAO
+    abstract val quoteOfTheDayDAO: QuoteOfTheDayDAO
 
     companion object {
 
