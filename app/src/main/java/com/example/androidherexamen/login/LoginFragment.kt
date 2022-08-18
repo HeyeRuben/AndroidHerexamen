@@ -128,6 +128,7 @@ class LoginFragment : Fragment() {
                         sp.edit {
                             this.putString("id", null)
                             this.putString("name", null)
+                            this.putString("role", null)
                             this.commit()
                         }
 
