@@ -1,17 +1,22 @@
 package com.example.androidherexamen.profile
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
+class ProfileViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
 
-    // Bevat de lijst met favoriete posts
-    val favPosts = database.getAllFavPosts() // Impl: via string formatter de data weergeven
+    val userId = MutableLiveData("")
+
+    // Bevat de lijst met posts
+    val posts: LiveData<List<Post>> =
+        Transformations.switchMap(userId) { getPostsFromDB(it) }
+
+    private fun getPostsFromDB(userId: String): LiveData<List<Post>> {
+        return database.getAllFavPosts(userId)
+    }
 
     private suspend fun delete(post: Post) {
         if (post != null)

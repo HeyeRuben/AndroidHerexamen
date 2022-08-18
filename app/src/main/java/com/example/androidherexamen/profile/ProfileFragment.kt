@@ -1,5 +1,7 @@
 package com.example.androidherexamen.profile
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,7 +35,7 @@ class ProfileFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
 
-        val viewModelFactory = ProfileViewModelFactory(1, dataSource, application)
+        val viewModelFactory = ProfileViewModelFactory(dataSource, application)
 
         val profileViewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
 
@@ -47,9 +49,17 @@ class ProfileFragment : Fragment() {
                 postId -> profileViewModel.onFavoritePostClicked(postId)
         })
 
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
+
+        val userId = sp.getString("id", null)
+
+        profileViewModel.userId.value = userId
+
         binding.postsListProfile.adapter = adapter
 
-        profileViewModel.navigateToComments.observe(this, Observer { post ->
+        profileViewModel.navigateToComments.observe(viewLifecycleOwner, Observer { post ->
             post?.let {
                 this.findNavController().navigate(
                     ProfileFragmentDirections
@@ -58,7 +68,7 @@ class ProfileFragment : Fragment() {
             }
         })
 
-        profileViewModel.favPosts.observe(viewLifecycleOwner, Observer {
+        profileViewModel.posts.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
