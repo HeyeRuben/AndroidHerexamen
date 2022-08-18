@@ -35,13 +35,13 @@ class DashboardFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
 
-        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
-            Context.MODE_PRIVATE
-        )
-
         val viewModelFactory = DashboardViewModelFactory(dataSource, application)
 
         val dashboardViewModel = ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
+
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
 
         val userId = sp.getString("id", null)
 

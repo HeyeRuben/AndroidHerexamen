@@ -6,10 +6,17 @@ import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
 
-class MainViewModel(userId: Int, val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
+class MainViewModel(val database: PostDatabaseDAO, application: Application) : AndroidViewModel(application) {
+
+    val userId = MutableLiveData("")
 
     // Bevat de lijst met posts
-    val posts = database.getAll() // Impl: via string formatter de data weergeven
+    val posts: LiveData<List<Post>> =
+        Transformations.switchMap(userId) { getPostsFromDB(it) }
+
+    private fun getPostsFromDB(userId: String): LiveData<List<Post>>{
+        return database.getAll(userId)
+    }
 
     private suspend fun delete(post: Post) {
         if (post != null)

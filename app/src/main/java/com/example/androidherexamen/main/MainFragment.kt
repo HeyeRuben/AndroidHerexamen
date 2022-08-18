@@ -1,6 +1,8 @@
 package com.example.androidherexamen.main
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -52,6 +54,14 @@ class MainFragment : Fragment() {
         }, AddPostToFavoritesClickListener {
             postId -> mainViewModel.onFavoritePostClicked(postId)
         })
+
+        val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",
+            Context.MODE_PRIVATE
+        )
+
+        val userId = sp.getString("id", null)
+
+        mainViewModel.userId.value = userId
 
         binding.postsList.adapter = adapter
 
