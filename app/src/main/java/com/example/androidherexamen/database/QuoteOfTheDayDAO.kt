@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface QuoteOfTheDayDAO {
-    @Query("SELECT * FROM quote_table")
+    @Query("SELECT * FROM quote_table ORDER BY quoteId DESC")
     fun getQuote(): LiveData<DatabaseQuoteOfTheDay>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
