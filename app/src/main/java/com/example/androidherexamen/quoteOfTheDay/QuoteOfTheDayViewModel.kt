@@ -1,46 +1,56 @@
 package com.example.androidherexamen.quoteOfTheDay
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.network.QuoteOfTheDayApi
 import com.example.androidherexamen.network.QuoteOfTheDayProperty
+import com.example.androidherexamen.repository.QuoteOfTheDayRepository
 import kotlinx.coroutines.*
+import java.lang.Exception
 
-class QuoteOfTheDayViewModel : ViewModel() {
-    // The internal MutableLiveData Property that stores the most recent response
-    private val _response = MutableLiveData<QuoteOfTheDayProperty>()
+class QuoteOfTheDayViewModel(application: Application) : AndroidViewModel(application) {
+    private val database = MyDatabase.getInstance(application.applicationContext)
+    private val quoteOfTheDayRepository = QuoteOfTheDayRepository(database)
 
-    // The external immutable LiveData for the response Property
-    val response: LiveData<QuoteOfTheDayProperty>
-        get() = _response
+    val quoteOfTheDay = quoteOfTheDayRepository.quoteOfTheDayDatabase
 
-    /**
-     * Call getQuoteOfTheDayProperties() on init so we can display status immediately.
-     */
     init {
-        getQuoteOfTheDayProperties()
-    }
-
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
-    private fun getQuoteOfTheDayProperties() {
-
         viewModelScope.launch {
-                try {
-
-                    var listResult = QuoteOfTheDayApi.retrofitService.getProperties()
-                    _response.value = listResult.first()
-                } catch (t: Throwable) {
-                }
+            quoteOfTheDayRepository.refreshQuote()
         }
     }
+
+    /*
+    private suspend fun getQuoteOfTheDayProperties() {
+
+        var getQOTDDeferred = QuoteOfTheDayApi.retrofitService.getPropertiesAsync()
+        try {
+            var res = getQOTDDeferred.await()
+            _response.value = res
+        } catch (e: Exception) {
+            println("failed: " + e.toString())
+        }
+
+    }
+    */
 
     override fun onCleared() {
         super.onCleared()
         viewModelScope.cancel()
     }
+
+    /**
+     * Factory for constructing FromAPIViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(QuoteOfTheDayViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return QuoteOfTheDayViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 }
+
