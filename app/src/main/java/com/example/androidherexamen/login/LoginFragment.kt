@@ -19,6 +19,7 @@ import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.example.androidherexamen.R
+import com.example.androidherexamen.Roles
 
 class LoginFragment : Fragment() {
     private lateinit var account: Auth0
@@ -163,6 +164,15 @@ class LoginFragment : Fragment() {
                     sp.edit {
                         this.putString("id", id)
                         this.putString("name", name)
+
+                        if (name != null) {
+                            if (name.startsWith("j", true)){
+                                this.putString("role", Roles.JONGERE.toString())
+                            } else {
+                                this.putString("role", Roles.BEGELEIDER.toString())
+                            }
+                        }
+
                         this.commit()
                     }
 
