@@ -10,14 +10,6 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 class QuoteOfTheDayViewModel(application: Application) : AndroidViewModel(application) {
-    // The internal MutableLiveData Property that stores the most recent response
-    private val _response = MutableLiveData<QuoteOfTheDayProperty>()
-
-    // The external immutable LiveData for the response Property
-    val response: LiveData<QuoteOfTheDayProperty>
-        get() = _response
-
-
     private val database = MyDatabase.getInstance(application.applicationContext)
     private val quoteOfTheDayRepository = QuoteOfTheDayRepository(database)
 
@@ -25,14 +17,11 @@ class QuoteOfTheDayViewModel(application: Application) : AndroidViewModel(applic
 
     init {
         viewModelScope.launch {
-            getQuoteOfTheDayProperties()
+            quoteOfTheDayRepository.refreshQuote()
         }
     }
 
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
+    /*
     private suspend fun getQuoteOfTheDayProperties() {
 
         var getQOTDDeferred = QuoteOfTheDayApi.retrofitService.getPropertiesAsync()
@@ -44,6 +33,7 @@ class QuoteOfTheDayViewModel(application: Application) : AndroidViewModel(applic
         }
 
     }
+    */
 
     override fun onCleared() {
         super.onCleared()
