@@ -1,15 +1,15 @@
 package com.example.androidherexamen.quoteOfTheDay
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.network.QuoteOfTheDayApi
 import com.example.androidherexamen.network.QuoteOfTheDayProperty
+import com.example.androidherexamen.repository.QuoteOfTheDayRepository
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class QuoteOfTheDayViewModel : ViewModel() {
+class QuoteOfTheDayViewModel(application: Application) : AndroidViewModel(application) {
     // The internal MutableLiveData Property that stores the most recent response
     private val _response = MutableLiveData<QuoteOfTheDayProperty>()
 
@@ -17,6 +17,11 @@ class QuoteOfTheDayViewModel : ViewModel() {
     val response: LiveData<QuoteOfTheDayProperty>
         get() = _response
 
+
+    private val database = MyDatabase.getInstance(application.applicationContext)
+    private val quoteOfTheDayRepository = QuoteOfTheDayRepository(database)
+
+    val quoteOfTheDay = quoteOfTheDayRepository.quoteOfTheDayDatabase
 
     init {
         viewModelScope.launch {
@@ -44,4 +49,18 @@ class QuoteOfTheDayViewModel : ViewModel() {
         super.onCleared()
         viewModelScope.cancel()
     }
+
+    /**
+     * Factory for constructing FromAPIViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(QuoteOfTheDayViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return QuoteOfTheDayViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 }
+
