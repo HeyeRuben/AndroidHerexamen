@@ -43,10 +43,10 @@ class MyDatabaseTests {
     @Test
     @Throws(Exception::class)
     suspend fun insertAndCountShouldBePlusOne() {
-        val currentAmount = postDatabaseDAO.getAll().value?.size
+        val currentAmount = postDatabaseDAO.getAllNieuwePosts().value?.size
         val post = Post()
         postDatabaseDAO.insert(post)
-        val newPosts = postDatabaseDAO.getAll().value?.size
+        val newPosts = postDatabaseDAO.getAllNieuwePosts().value?.size
         if (currentAmount != null) {
             assertEquals(currentAmount + 1, newPosts)
         }
