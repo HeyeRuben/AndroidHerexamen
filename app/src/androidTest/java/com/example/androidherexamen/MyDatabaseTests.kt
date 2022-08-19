@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.androidherexamen.database.*
 import junit.framework.Assert.assertEquals
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -42,13 +43,13 @@ class MyDatabaseTests {
 
     @Test
     @Throws(Exception::class)
-    suspend fun insertAndCountShouldBePlusOne() {
+    fun insertAndCountShouldBePlusOne() = runBlocking {
         val currentAmount = postDatabaseDAO.getAllNieuwePosts().value?.size
         val post = Post()
         postDatabaseDAO.insert(post)
         val newPosts = postDatabaseDAO.getAllNieuwePosts().value?.size
         if (currentAmount != null) {
-            assertEquals(currentAmount + 1, newPosts)
+            assertEquals(currentAmount.plus(1), newPosts)
         }
     }
 }
