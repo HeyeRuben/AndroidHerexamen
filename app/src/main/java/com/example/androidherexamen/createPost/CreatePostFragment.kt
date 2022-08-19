@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -101,8 +102,15 @@ class CreatePostFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == 100) {
             bindingRef.imageView.setImageURI(data?.data)
-            viewModelRef.imageBitmap = (bindingRef.imageView.drawable as BitmapDrawable).bitmap
+        } else if(requestCode == 101){
+            if (data != null) {
+                bindingRef.imageView.setImageBitmap(data.extras?.get("data") as Bitmap)
+            }
+        }
+
+        viewModelRef.imageBitmap = (bindingRef.imageView.drawable as BitmapDrawable).bitmap
     }
 
 }
