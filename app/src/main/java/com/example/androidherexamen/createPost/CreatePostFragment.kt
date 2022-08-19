@@ -77,10 +77,12 @@ class CreatePostFragment : Fragment() {
 
         val userId = sp.getString("id", null)
         val name = sp.getString("name", null)
+        val role = sp.getString("role", null)
 
         if (userId != null && name != null) {
             createPostViewModel.loggedInUserId = userId
             createPostViewModel.loggedInUsername = name
+            createPostViewModel.loggedInUserRole = role.toString()
         }
 
         binding.lifecycleOwner = this

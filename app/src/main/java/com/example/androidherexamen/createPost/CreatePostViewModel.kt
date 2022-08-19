@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.*
+import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ class CreatePostViewModel(
     val addNewPostResult = MutableLiveData("")
     var loggedInUserId: String = ""
     var loggedInUsername: String = ""
+    var loggedInUserRole: String = ""
     var imageBitmap: Bitmap? = null
 
     private val _navigateToMain = MutableLiveData(false)
@@ -54,7 +56,7 @@ class CreatePostViewModel(
                     _navigateToMain.value = true
                 }
             } else {
-                addNewPostResult.value = "Error: je moet een link of post tekst toevoegen."
+                addNewPostResult.value = "Error: je moet een link, tekst of foto toevoegen."
             }
         }
     }
@@ -74,6 +76,12 @@ class CreatePostViewModel(
     }
 
     private fun validateLoggedInUser(): Boolean {
-        return !loggedInUserId.isNullOrEmpty()
+        var validated: Boolean
+
+        validated =
+            !(loggedInUserRole != Roles.JONGERE.toString() || loggedInUserId.isNullOrEmpty())
+
+
+        return validated
     }
 }
