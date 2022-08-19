@@ -21,6 +21,8 @@ data class Post(
 
     var favorite: Boolean = false,
 
+    var gelezen: Boolean = false,
+
     var username: String = ""
 
 )

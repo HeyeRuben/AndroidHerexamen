@@ -41,7 +41,7 @@ class MainFragment : Fragment() {
 
         val dataSource = MyDatabase.getInstance(application).postDatabaseDAO
 
-        val viewModelFactory = MainViewModelFactory(1, dataSource, application)
+        val viewModelFactory = MainViewModelFactory(dataSource, application)
 
         val mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
@@ -53,6 +53,8 @@ class MainFragment : Fragment() {
             postId -> mainViewModel.onDeletePostClicked(postId)
         }, AddPostToFavoritesClickListener {
             postId -> mainViewModel.onFavoritePostClicked(postId)
+        }, AddPostToGelezenClickListener {
+            postId -> mainViewModel.onGelezenPostClicked(postId)
         })
 
         val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",

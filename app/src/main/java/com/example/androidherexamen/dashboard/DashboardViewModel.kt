@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.androidherexamen.database.Post
 import com.example.androidherexamen.database.PostDatabaseDAO
+import kotlinx.coroutines.launch
 
 class DashboardViewModel(
     val database: PostDatabaseDAO,
@@ -40,10 +41,25 @@ class DashboardViewModel(
     fun onNieuwePostsClicked() {
     }
 
+    fun onGelezenPostsClicked() {
+    }
+
     fun onBeantwoordePostsClicked() {
     }
 
-    fun onGelezenPostsClicked() {
+    fun onGelezenPostClicked(postId: Long) {
+        viewModelScope.launch {
+            val post = database.get(postId)
+
+            post.gelezen = post.gelezen != true
+
+            update(post)
+        }
+    }
+
+    private suspend fun update(post: Post) {
+        if (post != null)
+            database.update(post)
     }
 
     fun onCommentsNavigated() {

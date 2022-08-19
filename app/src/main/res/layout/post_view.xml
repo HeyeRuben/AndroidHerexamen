@@ -19,6 +19,9 @@
         <variable
             name="addPostToFavoritesClickListener"
             type="com.example.androidherexamen.main.AddPostToFavoritesClickListener" />
+        <variable
+            name="addPostToGelezenClickListener"
+            type="com.example.androidherexamen.main.AddPostToGelezenClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -35,12 +38,12 @@
                 android:layout_marginStart="29dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-
+                android:onClick="@{() -> addPostToGelezenClickListener.onClick(post)}"
+                app:postGelezen="@{post}"
                 android:text="GELEZEN"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/post_comments"
-                app:postFavorite="@{post}" />
+                app:layout_constraintStart_toEndOf="@+id/post_comments" />
 
             <TextView
                 android:id="@+id/post_username"

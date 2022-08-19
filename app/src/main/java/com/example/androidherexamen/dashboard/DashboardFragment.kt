@@ -55,6 +55,8 @@ class DashboardFragment : Fragment() {
                 postId -> dashboardViewModel.onDeletePostClicked(postId)
         }, AddPostToFavoritesClickListener {
                 postId -> dashboardViewModel.onFavoritePostClicked(postId)
+        }, AddPostToGelezenClickListener {
+                postId -> dashboardViewModel.onGelezenPostClicked(postId)
         })
 
         binding.dashboardPostsList.adapter = adapter

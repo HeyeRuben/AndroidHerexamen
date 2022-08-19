@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.androidherexamen.database.PostDatabaseDAO
 
 class MainViewModelFactory(
-    private val userId: Int,
     private val dataSource: PostDatabaseDAO,
     private val application: Application
 ) : ViewModelProvider.Factory {

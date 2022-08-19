@@ -53,6 +53,16 @@ class MainViewModel(val database: PostDatabaseDAO, application: Application) : A
         }
     }
 
+    fun onGelezenPostClicked(postId: Long) {
+        viewModelScope.launch {
+            val post = database.get(postId)
+
+            post.gelezen = post.gelezen != true
+
+            update(post)
+        }
+    }
+
     fun onCommentsNavigated() {
         _navigateToComments.value = null
     }

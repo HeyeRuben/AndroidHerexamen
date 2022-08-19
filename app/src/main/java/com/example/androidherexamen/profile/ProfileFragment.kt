@@ -47,6 +47,8 @@ class ProfileFragment : Fragment() {
                 postId -> profileViewModel.onDeletePostClicked(postId)
         }, AddPostToFavoritesClickListener {
                 postId -> profileViewModel.onFavoritePostClicked(postId)
+        }, AddPostToGelezenClickListener {
+                postId -> profileViewModel.onGelezenPostClicked(postId)
         })
 
         val sp: SharedPreferences = requireActivity().getSharedPreferences("LoggedInUser",

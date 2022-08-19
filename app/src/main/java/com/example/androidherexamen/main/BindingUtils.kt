@@ -42,3 +42,10 @@ fun CheckBox.setPostFavorite(item: Post?) {
         isChecked = item.favorite
     }
 }
+
+@BindingAdapter("postGelezen")
+fun CheckBox.setPostGelezen(item: Post?) {
+    item?.let {
+        isChecked = item.gelezen
+    }
+}

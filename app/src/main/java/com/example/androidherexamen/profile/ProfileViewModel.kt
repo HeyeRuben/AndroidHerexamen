@@ -29,6 +29,16 @@ class ProfileViewModel(val database: PostDatabaseDAO, application: Application) 
             database.update(post)
     }
 
+    fun onGelezenPostClicked(postId: Long) {
+        viewModelScope.launch {
+            val post = database.get(postId)
+
+            post.gelezen = post.gelezen != true
+
+            update(post)
+        }
+    }
+
     private val _navigateToComments = MutableLiveData<Long?>()
     val navigateToComments
         get() = _navigateToComments
