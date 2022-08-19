@@ -16,6 +16,12 @@ interface PostDatabaseDAO {
     @Delete
     suspend fun delete(post: Post)
 
+    @Query("SELECT * FROM Post WHERE gelezen == 0")
+    fun getAllNieuwePosts(): LiveData<List<Post>>
+
+    @Query("SELECT * FROM Post WHERE gelezen == 1")
+    fun getAllGelezenPosts(): LiveData<List<Post>>
+
     @Query("SELECT * FROM Post WHERE userId == :id ORDER BY postId DESC")
     fun getAll(id: String): LiveData<List<Post>>
 

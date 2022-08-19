@@ -61,6 +61,18 @@ class DashboardFragment : Fragment() {
 
         binding.dashboardPostsList.adapter = adapter
 
+        binding.nieuwePosts.setOnClickListener {
+            dashboardViewModel.viewId.value = 1
+        }
+
+        binding.beantwoordePosts.setOnClickListener {
+            dashboardViewModel.viewId.value = 2
+        }
+
+        binding.gelezenPosts.setOnClickListener {
+            dashboardViewModel.viewId.value = 3
+        }
+
         dashboardViewModel.navigateToComments.observe(this.viewLifecycleOwner, Observer { post ->
             post?.let {
                 this.findNavController().navigate(

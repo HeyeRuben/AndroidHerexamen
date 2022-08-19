@@ -12,17 +12,37 @@ class DashboardViewModel(
 ) : AndroidViewModel(application) {
 
     val userId = MutableLiveData("")
+    val viewId = MutableLiveData(1)
+
+    private val liveDataMerger = MediatorLiveData<Pair<String, Int>>().apply {
+        addSource(userId) { value = Pair(it!!, viewId.value!!) }
+        addSource(viewId) { value = Pair(userId.value!!, it!!) }
+    }
 
     // Bevat de lijst met posts
     val posts: LiveData<List<Post>> =
-        Transformations.switchMap(userId) { getPostsFromDB(it) }
+        Transformations.switchMap(liveDataMerger) { getPostsFromDB(liveDataMerger) }
 
     private val _navigateToComments = MutableLiveData<Long?>()
     val navigateToComments
         get() = _navigateToComments
 
 
-    private fun getPostsFromDB(userId: String): LiveData<List<Post>>{
+    private fun getPostsFromDB(params: MediatorLiveData<Pair<String, Int>>): LiveData<List<Post>>{
+
+        val userId = params.value?.first.toString()
+        val typeId = params.value?.second
+
+
+        when (typeId) {
+            // 1 -> Nieuw
+            1 -> return database.getAllNieuwePosts()
+            // 2 -> Beantwoord
+            2 -> return database.getAllPostsWithCommentsByUser(userId)
+            // 3 -> Gelezen
+            3 -> return database.getAllGelezenPosts()
+        }
+
         return database.getAllPostsWithCommentsByUser(userId)
     }
 
@@ -36,15 +56,6 @@ class DashboardViewModel(
 
     fun onFavoritePostClicked(postId: Long) {
         // mag dit niet doen
-    }
-
-    fun onNieuwePostsClicked() {
-    }
-
-    fun onGelezenPostsClicked() {
-    }
-
-    fun onBeantwoordePostsClicked() {
     }
 
     fun onGelezenPostClicked(postId: Long) {
