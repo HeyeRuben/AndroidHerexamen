@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/login">
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.example.androidherexamen.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main"
+        android:name="com.example.androidherexamen.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_main_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.androidherexamen.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.androidherexamen.comments.CommentsFragment"
+        android:label="CommentsFragment" >
+        <argument
+            android:name="postId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="com.example.androidherexamen.createPost.CreatePostFragment"
+        android:label="CreatePostFragment" >
+        <action
+            android:id="@+id/action_createPostFragment_to_main"
+            app:destination="@id/main" />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteOfTheDay"
+        android:name="com.example.androidherexamen.quoteOfTheDay.QuoteOfTheDayFragment"
+        android:label="QuoteOfTheDayFragment" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.devops_project_android_2122_h2_android.ui.login.LoginFragment"
+        android:label="fragment_login" />
+</navigation>

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Android Herexamen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="com_auth0_client_id">C6DrFvXbnBIWoU4B0A7jS8iPsy4RLq5s</string>
+    <string name="com_auth0_domain">rubenherexamen.eu.auth0.com</string>
+    <string name="com_auth0_scheme">demo</string>
 </resources>
