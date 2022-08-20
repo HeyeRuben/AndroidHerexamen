@@ -12,7 +12,9 @@ class MainViewModel(val database: PostDatabaseDAO, application: Application) : A
 
     // Bevat de lijst met posts
     val posts: LiveData<List<Post>> =
-        Transformations.switchMap(userId) { getPostsFromDB(it) }
+        Transformations.switchMap(userId) {
+            getPostsFromDB(it)
+        }
 
     private fun getPostsFromDB(userId: String): LiveData<List<Post>> {
         return database.getAll(userId)

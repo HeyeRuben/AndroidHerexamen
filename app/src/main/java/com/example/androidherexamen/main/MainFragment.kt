@@ -63,7 +63,7 @@ class MainFragment : Fragment() {
 
         val userId = sp.getString("id", null)
 
-        mainViewModel.userId.value = userId
+        mainViewModel.userId.value = userId.toString()
 
         binding.postsList.adapter = adapter
 

@@ -45,7 +45,7 @@ class DashboardFragment : Fragment() {
 
         val userId = sp.getString("id", null)
 
-        dashboardViewModel.userId.value = userId
+        dashboardViewModel.userId.value = userId.toString()
 
         binding.dashboardViewModel = dashboardViewModel
 

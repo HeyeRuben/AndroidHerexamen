@@ -41,7 +41,7 @@ class CreatePostViewModel(
         var isValidated = validateNewPost()
 
         if (!validateLoggedInUser()) {
-            addNewPostResult.value = "Error: Je moet inloggen om een post te maken"
+            addNewPostResult.value = "Error: Je moet inloggen als een jongere om een post te maken"
         } else {
             if (isValidated) {
                 viewModelScope.launch {
