@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
+import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentDashboardBinding
 import com.example.androidherexamen.main.*
@@ -44,6 +45,7 @@ class DashboardFragment : Fragment() {
         )
 
         val userId = sp.getString("id", null)
+        val role = sp.getString("role", null)
 
         dashboardViewModel.userId.value = userId.toString()
 
@@ -60,6 +62,14 @@ class DashboardFragment : Fragment() {
         })
 
         binding.dashboardPostsList.adapter = adapter
+
+        if (role.toString() != Roles.BEGELEIDER.toString()) {
+            binding.dashboardPostsList.visibility = View.INVISIBLE
+            binding.wrongRole.visibility = View.VISIBLE
+        } else {
+            binding.dashboardPostsList.visibility = View.VISIBLE
+            binding.wrongRole.visibility = View.INVISIBLE
+        }
 
         binding.nieuwePosts.setOnClickListener {
             dashboardViewModel.viewId.value = 1

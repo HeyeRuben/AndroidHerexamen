@@ -57,5 +57,15 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/beantwoorde_posts" />
+
+        <TextView
+            android:id="@+id/wrong_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:text="Gelieve in te loggen als begeleider om data te zien."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beantwoorde_posts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
