@@ -7,8 +7,6 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.provider.MediaStore
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -90,13 +88,13 @@ class CreatePostFragment : Fragment() {
         return binding.root
     }
 
-    private fun pickImageFromGallery(){
+    private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, 100)
     }
 
-    private fun openCamera(){
+    private fun openCamera() {
         val intent = Intent(ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 101)
     }
@@ -106,7 +104,7 @@ class CreatePostFragment : Fragment() {
 
         if (requestCode == 100) {
             bindingRef.imageView.setImageURI(data?.data)
-        } else if(requestCode == 101){
+        } else if (requestCode == 101) {
             if (data != null) {
                 bindingRef.imageView.setImageBitmap(data.extras?.get("data") as Bitmap)
             }
@@ -114,5 +112,4 @@ class CreatePostFragment : Fragment() {
 
         viewModelRef.imageBitmap = (bindingRef.imageView.drawable as BitmapDrawable).bitmap
     }
-
 }

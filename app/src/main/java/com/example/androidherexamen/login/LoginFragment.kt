@@ -167,7 +167,7 @@ class LoginFragment : Fragment() {
                         this.putString("name", name)
 
                         if (name != null) {
-                            if (name.startsWith("j", true)){
+                            if (name.startsWith("j", true)) {
                                 this.putString("role", Roles.JONGERE.toString())
                             } else {
                                 this.putString("role", Roles.BEGELEIDER.toString())

@@ -20,7 +20,4 @@ class QuoteOfTheDayRepository(private val database: MyDatabase) {
             database.quoteOfTheDayDAO.insertQuoteToRoom(quoteOfTheDayNetwork.asDBModel())
         }
     }
-
-
-
 }

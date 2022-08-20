@@ -5,10 +5,10 @@ import com.squareup.moshi.Json
 
 data class QuoteOfTheDayProperty(
 
-    @Json(name="content")
+    @Json(name = "content")
     val q: String,
 
-    @Json(name="author")
+    @Json(name = "author")
     val a: String
 )
 

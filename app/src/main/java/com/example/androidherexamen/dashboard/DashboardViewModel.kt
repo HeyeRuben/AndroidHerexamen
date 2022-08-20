@@ -27,12 +27,10 @@ class DashboardViewModel(
     val navigateToComments
         get() = _navigateToComments
 
-
-    private fun getPostsFromDB(params: MediatorLiveData<Pair<String, Int>>): LiveData<List<Post>>{
+    private fun getPostsFromDB(params: MediatorLiveData<Pair<String, Int>>): LiveData<List<Post>> {
 
         val userId = params.value?.first.toString()
         val typeId = params.value?.second
-
 
         when (typeId) {
             // 1 -> Nieuw

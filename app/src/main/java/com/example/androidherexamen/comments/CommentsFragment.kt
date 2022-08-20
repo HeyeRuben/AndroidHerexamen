@@ -11,9 +11,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
-import com.example.androidherexamen.createPost.CreatePostFragmentDirections
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentCommentsBinding
 

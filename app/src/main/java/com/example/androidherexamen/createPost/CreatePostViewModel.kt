@@ -1,10 +1,7 @@
 package com.example.androidherexamen.createPost
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.*
 import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.Post
@@ -80,7 +77,6 @@ class CreatePostViewModel(
 
         validated =
             !(loggedInUserRole != Roles.JONGERE.toString() || loggedInUserId.isNullOrEmpty())
-
 
         return validated
     }

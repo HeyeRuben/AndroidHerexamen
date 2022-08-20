@@ -49,7 +49,7 @@ class PostAdapter(
                 Context.MODE_PRIVATE
             )
 
-            if (sp.getString("role", null) == Roles.BEGELEIDER.toString()){
+            if (sp.getString("role", null) == Roles.BEGELEIDER.toString()) {
                 binding.postFavorite.visibility = View.INVISIBLE
                 binding.postGelezen.visibility = View.VISIBLE
                 binding.postDelete.visibility = View.INVISIBLE

@@ -106,7 +106,7 @@ class CommentsViewModel(val postId: Long, val database: CommentDatabaseDAO, appl
 
     private fun saveNewComment() {
 
-        if (!loggedInUserId.isNullOrEmpty()){
+        if (!loggedInUserId.isNullOrEmpty()) {
             viewModelScope.launch {
                 val newComment = Comment()
                 newComment.userId = loggedInUserId
