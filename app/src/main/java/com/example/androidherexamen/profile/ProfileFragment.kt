@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
+import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentProfileBinding
 import com.example.androidherexamen.main.*
@@ -57,11 +58,20 @@ class ProfileFragment : Fragment() {
 
         val userId = sp.getString("id", null)
         val userName = sp.getString("name", null)
+        val role = sp.getString("role", null)
 
         profileViewModel.userId.value = userId.toString()
         profileViewModel.userName.value = userName
 
         binding.postsListProfile.adapter = adapter
+
+        if (role.toString() != Roles.JONGERE.toString()) {
+            binding.postsListProfile.visibility = View.INVISIBLE
+            binding.wrongRole.visibility = View.VISIBLE
+        } else {
+            binding.postsListProfile.visibility = View.VISIBLE
+            binding.wrongRole.visibility = View.INVISIBLE
+        }
 
         profileViewModel.navigateToComments.observe(viewLifecycleOwner, Observer { post ->
             post?.let {

@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.androidherexamen.R
+import com.example.androidherexamen.Roles
 import com.example.androidherexamen.database.MyDatabase
 import com.example.androidherexamen.databinding.FragmentMainBinding
 
@@ -62,10 +63,19 @@ class MainFragment : Fragment() {
         )
 
         val userId = sp.getString("id", null)
+        val role = sp.getString("role", null)
 
         mainViewModel.userId.value = userId.toString()
 
         binding.postsList.adapter = adapter
+
+        if (role.toString() != Roles.JONGERE.toString()) {
+            binding.postsList.visibility = View.INVISIBLE
+            binding.wrongRole.visibility = View.VISIBLE
+        } else {
+            binding.postsList.visibility = View.VISIBLE
+            binding.wrongRole.visibility = View.INVISIBLE
+        }
 
         mainViewModel.navigateToComments.observe(this, Observer { post ->
             post?.let {
