@@ -2,6 +2,7 @@ package com.example.androidherexamen.dashboard
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -73,14 +74,23 @@ class DashboardFragment : Fragment() {
 
         binding.nieuwePosts.setOnClickListener {
             dashboardViewModel.viewId.value = 1
+            binding.nieuwePosts.typeface = Typeface.DEFAULT_BOLD
+            binding.beantwoordePosts.typeface = Typeface.DEFAULT
+            binding.gelezenPosts.typeface = Typeface.DEFAULT
         }
 
         binding.beantwoordePosts.setOnClickListener {
             dashboardViewModel.viewId.value = 2
+            binding.beantwoordePosts.typeface = Typeface.DEFAULT_BOLD
+            binding.gelezenPosts.typeface = Typeface.DEFAULT
+            binding.nieuwePosts.typeface = Typeface.DEFAULT
         }
 
         binding.gelezenPosts.setOnClickListener {
             dashboardViewModel.viewId.value = 3
+            binding.gelezenPosts.typeface = Typeface.DEFAULT_BOLD
+            binding.beantwoordePosts.typeface = Typeface.DEFAULT
+            binding.nieuwePosts.typeface = Typeface.DEFAULT
         }
 
         dashboardViewModel.navigateToComments.observe(this.viewLifecycleOwner, Observer { post ->
